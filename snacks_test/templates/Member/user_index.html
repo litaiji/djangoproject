@@ -1,0 +1,70 @@
+{% extends 'Member/base.html' %}
+{% block styles %}
+    <style>
+    .table_member{
+    height:50px;
+        font-size: 10px;
+    }
+    </style>
+
+{% endblock styles %}
+{% block loginsideright %}
+    <div id="loginsideright" >
+
+            <div class="lh38 font14 color666">
+                <p><span class="color09c">15941265505</span> 欢迎光临中国零食网</p>
+                <p>您的等级是 <span class="colore3393d">普通会员</span> ,您还需要再购物满 <span class="colore3393d">500</span> 元就可以升级为
+                    <span class="colore3393d">vip会员</span> <span class="tips_member"><span class="arrow_yellow"></span>会员制度详情。<a
+                            href="http://art.lingshi.com/articles/articles/bangzhu/36" target="_blank"
+                            style="color:#317ee7;">查看</a> <a href="http://member.lingshi.com/#" title="点击关闭"
+                                                             class="dismiss"><b style="color:#ffcc99;">X</b></a></span>
+                </p>
+                <p><a href="javascript:void(0);"
+                      onclick="showbox(&#39;http://member.lingshi.com/&#39;,&#39;http://member.lingshi.com/?act=phone_verification&#39;,480,320)"
+                      class="icon_phone" style="color:#317ee7;" title="点此发送验证码">手机未验证</a>
+                    <a href="http://member.lingshi.com/?act=profile"
+                       style="color:#317ee7; margin-left:25px; padding:0 0 4px 26px;" class="icon_email"
+                       title="点此发送认证邮件">验证邮箱</a>
+                    <span class="tips_member"><span class="arrow_yellow"></span>通过验证获取<span
+                            class="colore3393d">200</span>积分。<a
+                            href="http://art.lingshi.com/articles/articles/bangzhu/36" target="_blank"
+                            style="color:#317ee7;">查看</a>  <a href="http://member.lingshi.com/#" title="点击关闭"
+                                                              class="dismiss"><b style="color:#ffcc99;">X</b></a></span>
+                </p>
+                <table  border="0" cellspacing="1" cellpadding="0" class="table_member mt15" style="width: 770px;">
+                    <tbody>
+                    <tr>
+                        <td>订单提醒：
+                            <a href="http://member.lingshi.com/?act=order_list"><span class="color999">零售订单(<span
+                                    style="color:red;">0</span>)</span></a>
+                            <a href="http://member.lingshi.com/?act=order_list"><span class="color999 pl10">团购订单(<span
+                                    style="color:red;">0</span>)</span></a>
+                            <a href="http://member.lingshi.com/?act=no_comment_list"><span
+                                    class="color999 pl10">未评论(<span style="color:red;">0</span>)</span></a>
+                        </td>
+                        <td>我的优惠券：
+                            <a href="http://member.lingshi.com/?act=bonus"><span class="colore3393d">0</span>张</a></td>
+                    </tr>
+                    <tr>
+                        <td>账户余额：
+                            <a href="http://member.lingshi.com/?act=account_log"><span class="colore3393d">￥0.00元</span></a>
+                            <a style="margin-left:20px; position:relative; top:6px;"
+                               href="http://member.lingshi.com/?act=account_deposit">
+                                <img src="/static/images/btn_chongzhi.png" width="66" height="22">
+                            </a>
+                        </td>
+                        <td>我的积分：
+                            <a href="http://member.lingshi.com/?act=integral_list"><span class="colore3393d">1020</span>分</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div class="blank5"></div>
+
+
+        </div>
+{% endblock loginsideright %}

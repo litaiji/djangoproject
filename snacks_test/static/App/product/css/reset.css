@@ -1,0 +1,88 @@
+/* ------------css reset------------- */
+html{color:#000;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+fieldset,img{border:0;}
+abbr,acronym{border:0;font-variant:normal;}
+:focus{outline:0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-family:inherit;font-weight:inherit;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;font-family:"\5fae\8f6f\96c5\9ed1","Microsoft YaHei", Arial, Helvetica, sans-serif, 宋体;}
+input,button,textarea,select,optgroup,option{font-size:inherit;font-family:inherit;font-weight:inherit;}
+input,button,textarea,select{font-size:100%;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+sup,sub{font-size:100%;vertical-align:baseline;}
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:none;}
+em { font-style:normal; }
+
+/*----[ clear ]---------------------------------*/
+.fixed:after{content:".";display:block;clear:both;height:0;visibility:hidden;}
+.fixed{display:block;min-height:1%;}
+*html .fixed{height:1%;}
+.clear{display:block!important;float:none!important;clear:both;overflow:hidden;width:auto!important;height:0!important;font-size:0;line-height:0;margin:0 auto!important;padding:0!important;}
+
+/* -----[ body ]---------------------*/
+body {
+	font-size:12px;  font-family:Arial, Verdana, Helvetica, sans-serif;
+	background:#fff;
+	color:#333;}
+
+a {	-webkit-transition:all .3s ease;
+	   -moz-transition:all .3s ease;
+		 -o-transition:all .3s ease;
+	        transition:all .3s ease; }
+
+a:link,a:visited {
+	text-decoration:none;
+	color:#333; }
+
+a:hover {
+	color:#e61952;
+	-webkit-transition:all .3s ease;
+	   -moz-transition:all .3s ease;
+		 -o-transition:all .3s ease;
+	        transition:all .3s ease; }
+
+/*cart */
+.success_cart {
+    width: 385px;
+    font-size: 13px;
+    margin: 8px 0;
+}
+.success_cart1 {
+    margin: 0 auto;
+    width: 144px;
+}
+.success_cart_btn {
+    width: 160px;
+    height: 24px;
+    margin: 0 auto;
+}
+.success_cart span {
+    width: 226px;
+    height: 1px;
+    display: block;
+    margin: 10px auto;
+}
+.btnA, .btnB {
+    width: 67px;
+    height: 22px;
+    margin: 0 4px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 22px;
+    font-size: 12px;
+    display: block;
+    float: left;
+}
+.btnA {
+    background: url(../images/btn.png) -67px 0 no-repeat;
+    color: #111;
+}
+.btnB {
+    background: url(../images/btn.png) -67px -24px no-repeat;
+    color: #fff;
+    cursor:pointer;
+}

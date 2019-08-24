@@ -1,0 +1,111 @@
+
+.cl{ height:0px; overflow:hidden; clear:both;}
+
+.c_width{
+	margin:0 auto;
+	width:980px;
+	height:510px;
+	padding:110px 0px 0px 0px;
+	border-left:1px solid #dcdcdc;
+	border-right:1px solid #ededed;
+	border-bottom:1px solid #ededed;
+	background: url(../images/pic/diangdan_bg_big.jpg) no-repeat bottom;;
+	}
+/**/
+.box{
+    margin:0 auto;
+	width:762px;
+	height:378px;
+	background: url(../images/pic/diangdan_b.gif) no-repeat left bottom;
+	font-size:12px;
+	}
+.content{
+	height:302px;
+	border-left:3px solid #fd7300;
+	border-right:3px solid #fd7300;
+	background:#fff1e5;
+	padding:40px 0px 0px 20px;
+	line-height:24px;
+	color:#313131;
+}
+.content p{
+	padding:5px 60px;_padding:3px 60px;
+}
+.content label{
+    display:block;
+	width:110px;
+	height:30px;
+	background:red;
+}
+.content .in1{
+    width:120px;
+	display:inline-block;
+	text-align:right;
+}
+.content .in2{
+    border:1px solid #d4d4d4;
+	height:22px;
+	line-height:22px;
+	width:170px;
+}
+.content .in3{
+    color:#939393;
+	padding-left:5px;
+}
+.content .in4{
+    display:block;
+	height:25px;
+	padding:10px 0px 0px 125px;
+}
+.content .in5{
+   padding-left:9px;
+}
+.f14{ font-size:14px;}
+.h20{ height:20px;}
+
+
+/*jieguo*/
+.tbox{
+	width:860px;
+	margin:0 auto;
+	background:#fff;
+	padding:30px;
+}
+.zhanghu{
+    float:left;
+	height:30px;
+	font-weight:bold;
+}
+
+.rfloat{ float:right; }
+
+.tbox table th{
+    background:#e0e0e0;
+}
+.tbox table tr{
+	background:#fff;
+	height:34px;
+	text-align:center;
+}
+.wrap { width:80%; margin:20px auto; }
+.snack_info { background:#fff; border:1px solid #f4e9ed; }
+/* 订单速查 */
+.order { border:1px solid #e2e2e2; padding-bottom:50px; background:url(../images/magnifier.png) right bottom no-repeat; }
+.order .title { height:44px; line-height:44px; padding-left:13px; font-size:18px; font-weight:700; border-bottom:1px solid #e2e2e2; font-family:"\5fae\8f6f\96c5\9ed1","Microsoft YaHei";}
+.table_order { width:80%; font-size:14px; color:#666; margin:30px 0; font-size:14px; color:#666; }
+.table_order td { line-height:26px; padding:5px 0 5px 10px; }
+.table_order i { color:#e31246; padding:0 10px; font-weight:700; position:relative; top:2px; }
+.table_order .tips { color:#aaa; font-size:12px; }
+.table_order .notice { color:#e31246; font-size:12px; }
+#table_order .inputBg { border:1px solid #c1c1c3; width:200px; height:30px; line-height:30px; font-size: 14px; text-indent:10px; *text-indent:0; }
+.fixed .btn_search,a.btn_reset { width:88px; height:26px; display:block; float:left; margin-left:100px; display:inline; border-radius:6px; line-height:26px; text-align:center; background:#e61952; color:#fff; font-size:16px; font-family:"\5fae\8f6f\96c5\9ed1","Microsoft YaHei";cursor: pointer;border:none;}
+a.btn_reset { background:#00bfff; margin-left:50px; }
+
+.title2 { margin-top:30px; line-height:22px; font-size:12px; color:#666; position:relative;}
+.title2 a { color:#0099cc; position:absolute; top:0; right:0; }
+
+.table_order2 { width:1200px; font-size:14px; color:#666; margin:10px 0; font-size:14px; color:#666; background:#c8c8c8; }
+.table_order2 th,.table_order2 td { line-height:26px; padding:5px 5px; color:#222; text-align:center; background:#e1e1e1; }
+.table_order2 td { background:#fff; color:#555; font-size:12px; }
+.tr2 .money { color:#e61952; }
+.other { text-align:right; color:#999; margin:100px 0 60px;}

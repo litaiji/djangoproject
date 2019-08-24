@@ -1,0 +1,1041 @@
+{% extends 'App/product/common/base.html' %}
+{% block title %}
+    <title>零食团购_零食促销_零食抢购-中国零食网</title>
+    {% endblock title %}
+{% block scripts %}
+    <link href="/static/App/product/css/cuxiao.css" rel="stylesheet" type="text/css">
+    <script src="/static/App/product/js/hm.js.下载"></script>
+    <script type="text/javascript">var domain = "http://www.lingshi.com/";
+    var Search_Path = "http://www.lingshi.com/list/";
+    var Cart_Path = "http://pay.lingshi.com/";
+    var Customer_Path = "http://member.lingshi.com/";
+    var P_domain = "http://pifa.lingshi.com/";</script>
+    <script type="text/javascript" src="/static/App/product/js/common.js.下载"></script>
+    <script language="javascript" src="/static/App/product/js/jquery.easing.1.3.js.下载"></script>
+    <script type="text/javascript" src="/static/App/product/js/kf.js.下载"></script>
+    <style type="text/css">#rightDiv {
+    position: fixed;
+    z-index: 100000000;
+    overflow: hidden;
+}</style>
+    <script type="text/javascript" src="/static/App/product/js/roll.js.下载"></script>
+    <script src="/static/App/product/js/ttScrollBar.js.下载"></script>
+    <script type="text/javascript" src="/static/App/js/header_footer.js"></script>
+    <script type="text/javascript" src="/static/App/product/js/jquery.autocomplete-min.js.下载"></script>
+    <script type="text/javascript">
+        document.domain = 'lingshi.com';
+        var process_request = "正在处理您的请求...";
+        $(function () {
+            //搜索自动完成，ajax
+            var onAutocompleteSelect = function (value, data) {
+                //根据返回结果自定义一些操作
+            };
+            var options = {
+                serviceUrl: 'http://www.lingshi.com/static_state.php',//获取数据的后台页面
+                width: 415,//提示框的宽度
+                delimiter: /(,|;)\s*/,//分隔符
+                onSelect: onAutocompleteSelect,//选中之后的回调函数
+                deferRequestBy: 0, //单位微秒
+                params: {country: 'Yes', act: 'search'},//参数
+                noCache: false, //是否启用缓存 默认是开启缓存的
+                autoSubmit: true
+            };
+            a1 = $('#ks').autocomplete(options);
+            //商店公告
+            $.getJSON('http://www.lingshi.com/static_state.php?callback=?', {act: 'top_art'}, function (json) {
+                var html = '';
+                $.each(json, function (index, val) {
+                    html += '<li><a href="' + val.link + '" target="_blank" title="' + val.title + '">' + val.title + '</a></li>';
+                });
+                var fdom = $('#fontlist');
+                fdom.html(html);
+                fdom.rollGallery({
+                    direction: "top",
+                    speed: 2000,
+                    showNum: 2
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript" src="/static/App/product/js/shadowbox.js.下载"></script>
+{% endblock scripts %}
+{% block style %}
+    <style type="text/css">#flDiv {
+    position: fixed;
+    z-index: 100000000;
+    overflow: hidden;
+    width: 110px;
+    height: 282px;
+}</style>
+    <style type="text/css">#frDiv {
+    position: fixed;
+    z-index: 100000000;
+    overflow: hidden;
+    width: 110px;
+    height: 282px;
+}</style>
+{% endblock style %}
+
+
+
+    <!--[if lte IE 6]>
+<script  type="text/javascript"  src="http://www.lingshi.com/js/transparentPNG.js" ></script>
+<script>
+	DD_belatedPNG.fix('.tag,.a1,.b1,.a2,.b2,.a3,.b3,.a4,.b4,.a5,.b5,.a6,.b6,.a7,.b7,.a8,.b8,.a9,.b9,.a10,.b10,.a11,.b11 ,.c1,.d1,.c2,.d2,.c3,.d3,.c4,.d4,.c5,.d5,.c6,.d6,.c7,.d7,.c8,.d8,.c9,.d9,.c10,.d10,.c11,.d11');
+</script>
+<![endif]-->
+
+{% block body %}
+<body>
+<div id="div_company_mini"
+     style="line-height: 0; font-size: 0px; display: none; position: fixed; right: 0px; bottom: 0px; width: 360px; height: 460px; z-index: 1000000; cursor: move; overflow: visible;">
+    <div class="mini-btn mini-btn1" id="mini-btn" onclick="show_floatWindow();"
+         style="width:auto;white-space:nowrap;cursor:pointer;display:none;position:absolute;right:0; bottom:0;z-index:-1;height: 42px;border-radius:2px; overflow: hidden; background: #ed1313;-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .06), 0 2px 32px rgba(0, 0, 0, .16)!important;box-shadow: 0 1px 6px rgba(0, 0, 0, .06), 0 2px 32px rgba(0, 0, 0, .16)!important;">
+        <div class="mini-btn-info" style="position: relative;width: 42px;height: 42px;display:inline-block;"><span
+                style="width:100%;height:100%;position:absolute;left:0;top:0;z-index:1;background: center center no-repeat;background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/png/img-email24.png);background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/svg/img-email24.svg), none;"></span><span
+                style="width:100%;height:100%;position:absolute;left:0;top:0;background:#000;opacity:0.2;filter:alpha(opacity=20);"></span><span
+                id="info-num"
+                style="display:none;position: absolute;top: 5px;right: 5px;z-index:10;height: 14px;min-width: 14px;line-height: 14px;border-radius: 7px;background: red;font-size: 12px;color: #FFFFFF;letter-spacing: 0.47px;text-align: center;">0</span>
+        </div>
+        <div class="mini-btn-middle"
+             style="width:auto;font-weight:normal;display:inline-block;vertical-align:top;line-height: 42px;padding: 0 8px;font-size: 16px;color: #FFFFFF;letter-spacing: 0.83px;word-break: break-all;text-align: center;">
+            给我们留言吧!
+        </div>
+        <div class="mini-btn-window"
+             style="display:inline-block;width: 42px;height: 42px;background: center center no-repeat;background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/png/to-maxWindow.png);background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/svg/to-maxWindow.svg), none;"></div>
+    </div>
+    <div id="iframe_company_mini_div"
+         style="font-size: 0;background-color:#fff;border-radius:2px;overflow:hidden;width:100%;height:460px;box-shadow:0 5px 40px rgba(0,0,0,.16)!important;-webkit-box-shadow:0 5px 40px rgba(0,0,0,.16)!important;">
+        <h6 class="pc-visitor-header"
+            style="width:100%;box-sizing:border-box;background: #ed1313 no-repeat 10px;margin:0;padding:0;padding-left: 10px;font-size: 14px;color: #fff;height: 36px;line-height: 36px;position: relative;font-weight: normal;padding-right: 72px;">
+            <img style="max-width: 80px;width:auto;height:24px;float: left;margin-top: 6px;border-radius:2px;"
+                 src="./促销页面_files/logo.png"><label
+                style="background: none; padding: 0; margin: 0; border: 0; line-height:36px;cursor:move;font-weight:normal;cursor:move;color: #fff;display: inline-block;float: left;max-width:60%;margin-left: 5px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"
+                class="header-company">中国零食网</label><span onclick="max_from_company_mini(this);" title="最大化"
+                                                          class="pc-new pc-title-btn"
+                                                          style="background: url(https://www10c1.53kf.com/style/chat/new2017/image/png/newWindow.png) center no-repeat;background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/svg/newWindow.svg),none;position: absolute;width: 36px;height: 36px;cursor: pointer;right: 40px;top: 0;fill: #F08000;"></span><span
+                onclick="hide_floatWindow();" title="最小化" class="pc-hide pc-title-btn"
+                style="background: url(https://www10c1.53kf.com/style/chat/new2017/image/png/to-minWindow.png) center no-repeat;background-image: url(https://www10c1.53kf.com/style/chat/new2017/image/svg/to-minWindow.svg),none;position: absolute;width: 36px;height: 36px;cursor: pointer;right: 0px;top: 0;"></span>
+        </h6>
+        <iframe id="iframe_company_mini" frameborder="0"
+                style="height:424px;width:100%;margin:0;padding:0;visibility: inherit;opacity:1;position:inherit;"
+                src="./促销页面_files/saved_resource.html"></iframe>
+    </div>
+</div>
+<div id="kfivtwin" style="display: none; overflow: visible;">
+    <div id="acc_title" class="Lelem" style="position: relative; z-index: 10000; overflow: visible;" minheight="100"
+         minwidth="100" maxheight="400" maxwidth="400">
+        <div class="Lelem" type="img"
+             style="display: block; cursor: default; position: absolute; top: 5px; left: 4px; z-index: 10001; width: 390px; height: 202px;">
+            <img style="width: 390px; height: 202px;" src="./促销页面_files/commonbg_21.png"></div>
+        <div style="display: block; cursor: default; position: absolute; top: 13px; left: 19px; z-index: 10002; width: 116px; height: 21px; color: rgb(255, 255, 255);"
+             type="text" class="Lelem"><span
+                style="vertical-align: top; color: rgb(255, 255, 255); font-family: 宋体; font-weight: bold; font-size: 14.7px; line-height: 21px;"
+                iseditable="1">53KF在线客服</span></div>
+        <div style="display: block; cursor: pointer; position: absolute; top: 18px; left: 371px; z-index: 10003; width: 12px; height: 12px;"
+             onclick="onliner_zdfq=3;jtfq_type=1;hidden_ivt();;" type="img" class="Lelem"><img
+                src="./促销页面_files/closebtn_10.png" style="width: 12px; height: 12px;"></div>
+        <div class="Lelem" type="img"
+             style="display: block; cursor: default; position: absolute; top: 46px; left: 11px; z-index: 10004; width: 119px; height: 131px;">
+            <img style="width: 119px; height: 131px;" src="./促销页面_files/otherimg_11.png"></div>
+        <div style="display: block; cursor: default; position: absolute; top: 51px; left: 149px; z-index: 10005; width: 94px; height: 23px; color: rgb(0, 0, 0);"
+             type="text" class="Lelem"><span
+                style="vertical-align: top; font-weight: bold; font-family: 黑体; font-size: 16px; line-height: 23px;"
+                iseditable="1">欢迎咨询！</span></div>
+        <div style="display: block; cursor: default; position: absolute; top: 83px; left: 149px; z-index: 10006; width: 223px; height: 17px;"
+             type="text" class="Lelem"><span style="vertical-align: top; font-family: 宋体; font-size: 12px;"
+                                             iseditable="1">53KF.com，感谢大家的支持！</span></div>
+        <div style="display: block; cursor: default; position: absolute; top: 105px; left: 151px; z-index: 10007; width: 175px; height: 17px;"
+             type="text" class="Lelem"><span style="vertical-align: top; font-family: 宋体; font-size: 12px;"
+                                             iseditable="1">请问有什么可以帮您？</span></div>
+        <div style="display: block; cursor: pointer; position: absolute; top: 136px; left: 149px; z-index: 10008; width: 96px; height: 35px;"
+             onclick="onliner_zdfq=2;hz6d_is_exist(&quot;window.open(%22https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26kflist%3Doff%26kf%3D2199756186%2540qq.com%252C2995283645%2540qq.com%252C2685598214%2540qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26language%3Dzh-cn%26charset%3Dgbk%26username%3D%26userinfo%3D%26introurl%3D%26lyurl%3D%26lytype%3D0%26copartner%3D%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26brief%3D%26logo%3D%26question%3D%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26tfrom%3D2%22%2C%22_blank%22%2C%22height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno%22)&quot;);hidden_ivt();;"
+             type="img" class="Lelem"><img src="./促销页面_files/clickbtn_29.png" style="width: 96px; height: 35px;"></div>
+        <div class="Lelem" type="img" onclick="onliner_zdfq=3;jtfq_type=1;hidden_ivt();;"
+             style="display: block; cursor: pointer; position: absolute; top: 135px; left: 263px; z-index: 10009; width: 96px; height: 35px;">
+            <img style="width: 96px; height: 35px;" src="./促销页面_files/closebtn_17.png"></div>
+        <div style="display: block; cursor: pointer; position: absolute; top: 180px; left: 15px; z-index: 100010; width: 114px; height: 17px;"
+             type="text" class="Lelem"><a href="http://www.53kf.com/" target="_blank"
+                                          style="text-decoration:none;cursor:pointer;"><span
+                style="vertical-align: top; font-size: 10px; line-height: 17px; font-family: 宋体; color: rgb(158, 158, 158);"
+                iseditable="1">这是什么工具？</span></a></div>
+        <div style="display: block; cursor: pointer; position: absolute; top: 179px; left: 290px; z-index: 10011; width: 105px; height: 17px;"
+             type="text" class="Lelem"><a href="http://www.53kf.com/" target="_blank"
+                                          style="text-decoration:none;cursor:pointer;"><span
+                style="vertical-align: top; font-size: 10px; line-height: 17px; font-family: 宋体; color: rgb(158, 158, 158);"
+                iseditable="1">Powered by 53KF</span></a></div>
+    </div>
+</div>
+<div id="kfivteffect"
+     style="display: none; position: absolute; width: 0px; height: 0px; overflow: hidden; border: 1px solid rgb(27, 136, 208); background: rgb(214, 238, 253); z-index: 10087;"></div>
+<iframe id="kfiframe" src="./促销页面_files/saved_resource(1).html" frameborder="0" scrolling="no"
+        style="display: none; overflow: hidden;"></iframe>
+<div id="iconDiv1" style="height: auto; width: auto;">
+    <iframe style="position:absolute;z-index:7998;width:0px;height:0px;top:0px;left:0px;" frameborder="0"
+            src="./促销页面_files/saved_resource(2).html"></iframe>
+    <div id="iconDivMain1"
+         style="z-index: 10085; left: 1385px; top: 100px; width: 33px; height: 362px; position: absolute;">
+        <div id="kf_hidden1" onclick="set_auto_hidden(1)" onmouseover="show_kf_icons(1);"
+             onmouseout="hidden_kf_icon(1);" style="position:absolute; top:0; right:0;z-index:9000;display:none;">
+            <div id="KFLOGO" class="Lelem" maxwidth="400" maxheight="400" minwidth="100" minheight="100"
+                 style="width: 166px; height: 317px; position: relative; z-index: 10000;">
+                <div class="Lelem" type="img"
+                     style="display: block; cursor: default; position: absolute; top: 4px; left: 20px; z-index: 10001; width: 130px; height: 305px;">
+                    <img style="width: 130px; height: 305px;" src="./促销页面_files/commonbg_17.png"></div>
+                <div class="Lelem" type="img"
+                     onclick="hz6d_is_exist(&#39;setIsinvited()%3Bwindow.open(#liyc#https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26language%3Dzh-cn%26charset%3Dgbk%26kflist%3Doff%26kf%3D2199756186%40qq.com%2C2995283645%40qq.com%2C2685598214%40qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26callback_id6ds%3D10274927%2C10274928%2C10274929%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26tfrom%3D1%26tpl%3Dcrystal_blue%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26is_group%3D%26is_group%3D#liyc#%2C%20#liyc#_blank#liyc#%2C%20#liyc#height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)&#39;);"
+                     style="display: block; cursor: pointer; position: absolute; top: 20px; left: 9px; z-index: 10003; width: 154px; height: 37px;">
+                    <img src="./促销页面_files/clickbtn_31.png" style="width: 154px; height: 37px;"></div>
+                <div class="Lelem" type="img"
+                     onclick="hz6d_is_exist(&#39;setIsinvited()%3Bwindow.open(#liyc#https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26language%3Dzh-cn%26charset%3Dgbk%26kflist%3Doff%26kf%3D2199756186%40qq.com%2C2995283645%40qq.com%2C2685598214%40qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26callback_id6ds%3D10274927%2C10274928%2C10274929%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26tfrom%3D1%26tpl%3Dcrystal_blue%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26is_group%3D%26is_group%3D#liyc#%2C%20#liyc#_blank#liyc#%2C%20#liyc#height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)&#39;);"
+                     style="display: block; cursor: pointer; position: absolute; top: 198px; left: 30px; z-index: 10004; width: 112px; height: 34px;">
+                    <img src="./促销页面_files/clickbtn_65.png" style="width: 112px; height: 34px;"></div>
+                <div class="Lelem" type="img"
+                     onclick="hz6d_is_exist(&#39;setIsinvited()%3Bwindow.open(#liyc#https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26language%3Dzh-cn%26charset%3Dgbk%26kflist%3Doff%26kf%3D2199756186%40qq.com%2C2995283645%40qq.com%2C2685598214%40qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26callback_id6ds%3D10274927%2C10274928%2C10274929%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26tfrom%3D1%26tpl%3Dcrystal_blue%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26is_group%3D%26is_group%3D#liyc#%2C%20#liyc#_blank#liyc#%2C%20#liyc#height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)&#39;);"
+                     style="display: block; cursor: pointer; position: absolute; top: 251px; left: 30px; z-index: 10005; width: 112px; height: 34px;">
+                    <img src="./促销页面_files/clickbtn_65.png" style="width: 112px; height: 34px;"></div>
+                <div class="Lelem" type="text"
+                     style="display: block; cursor: pointer; position: absolute; top: 24px; left: 30px; z-index: 10006; width: 131px; height: 22px; color: rgb(255, 255, 255);">
+                    <span iseditable="1"
+                          style="vertical-align: top; font-weight: bold; font-size: 15.4px; line-height: 22px;">零食网在线客服</span>
+                </div>
+                <div class="Lelem" type="text"
+                     style="display: block; cursor: pointer; position: absolute; top: 208px; left: 69px; z-index: 10007; width: 65px; height: 21px; color: rgb(255, 255, 255);"
+                     onclick="hz6d_is_exist(&#39;setIsinvited()%3Bwindow.open(#liyc#https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26language%3Dzh-cn%26charset%3Dgbk%26kflist%3Doff%26kf%3D2199756186%40qq.com%2C2995283645%40qq.com%2C2685598214%40qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26callback_id6ds%3D10274927%2C10274928%2C10274929%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26tfrom%3D1%26tpl%3Dcrystal_blue%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26is_group%3D%26is_group%3D#liyc#%2C%20#liyc#_blank#liyc#%2C%20#liyc#height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)&#39;);">
+                    <span iseditable="1"
+                          style="vertical-align: top; font-weight: bold; color: rgb(255, 255, 255); font-size: 14.7px; line-height: 21px;">售前咨询</span>
+                </div>
+                <div class="Lelem" type="text"
+                     style="display: block; cursor: pointer; position: absolute; top: 258px; left: 69px; z-index: 10008; width: 65px; height: 21px; color: rgb(255, 255, 255);"
+                     onclick="hz6d_is_exist(&#39;setIsinvited()%3Bwindow.open(#liyc#https%3A%2F%2Fwww10c1.53kf.com%2FwebCompany.php%3Fkf_sign%3DTM1NzMTU2NgwNzEwNjMyNzU5NjgxMDA0NzA4NTIxMDk%3D%26arg%3D9007929%26style%3D1%26language%3Dzh-cn%26charset%3Dgbk%26kflist%3Doff%26kf%3D2199756186%40qq.com%2C2995283645%40qq.com%2C2685598214%40qq.com%26zdkf_type%3D1%26lnk_overflow%3D0%26callback_id6ds%3D10274927%2C10274928%2C10274929%26referer%3Dhttp%253A%252F%252Fwww.lingshi.com%252Fcuxiao.htm%26keyword%3Dhttp%253A%252F%252Fwww.lingshi.com%252F%26tfrom%3D1%26tpl%3Dcrystal_blue%26uid%3D9346677b2632ee33bcf938bdfc761ca5%26is_group%3D%26is_group%3D#liyc#%2C%20#liyc#_blank#liyc#%2C%20#liyc#height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)&#39;);">
+                    <span iseditable="1"
+                          style="vertical-align: top; font-weight: bold; color: rgb(255, 255, 255); font-size: 14.7px; line-height: 21px;">售后服务</span>
+                </div>
+                <div class="Lelem" type="img"
+                     style="display: block; cursor: pointer; position: absolute; top: 49px; left: 26px; z-index: 10008; width: 120px; height: 143px;">
+                    <img src="./促销页面_files/otherimg_21.png" style="width: 120px; height: 143px;"></div>
+                <div class="Lelem" type="img" onclick="_53_close_icon(this);"
+                     style="display: block; cursor: pointer; position: absolute; top: 30px; left: 146px; z-index: 10008; width: 10px; height: 8px;">
+                    <img src="./促销页面_files/closebtn_9.png" style="width: 10px; height: 8px;"></div>
+            </div>
+        </div>
+        <div>
+            <div id="auto_hidden1"
+                 style="z-index: 9001; display: block; right: 0px; top: 0px; width: 33px; height: 135px; overflow: hidden; position: absolute; background: url(&quot;https://www10c1.53kf.com/img/kflogo/ssan/right/red.gif&quot;) no-repeat;"
+                 onmouseover="show_kf_icons(1);"></div>
+        </div>
+    </div>
+</div>
+
+<!--[if IE 6]><style type="text/css">#rightDiv{position: absolute;Z-INDEX: 100000000;  OVERFLOW: hidden;}</style>
+<![endif]-->
+
+<!--[if IE 6]><style type="text/css">#pifaDiv{position: absolute;Z-INDEX: 100000000;  OVERFLOW: hidden; width:110px;height:282px;}</style>
+<![endif]-->
+
+<!--[if IE 6]><style type="text/css">#tuangouDiv{position: absolute;Z-INDEX: 100000000;  OVERFLOW: hidden; width:110px;height:282px;}</style>
+<![endif]-->
+
+
+
+<div class="cx_banner" id="cx_ban" style="width: 1419px; overflow: hidden; zoom: 1;">
+    <ul class="cx_banner_ul" id="cx_banner_ul"
+        style="position: relative; left: -18447px; margin-left: 11352px; width: 8514px;">
+
+
+        <li style="background: rgb(249, 163, 109); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1730" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1474104173935304691.png" alt="新版促销焦点图C3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061749730526668.png" alt="新版促销焦点图C2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474103891437052940.jpg" alt="新版促销焦点图C1">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li style="background: rgb(118, 146, 60); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1803" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1474101785503846061.png" alt="新版促销焦点图A3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474101752544500541.jpg" alt="新版促销焦点图A2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474101710649996605.jpg" alt="新版促销焦点图A1">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li style="background: rgb(163, 211, 60); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1674" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1454061717362465495.png" alt="新版促销焦点图B3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061709181949828.png" alt="新版促销焦点图B2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061702796583740.png" alt="新版促销焦点图B1">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li style="background: rgb(249, 163, 109); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1730" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1474104173935304691.png" alt="新版促销焦点图C3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061749730526668.png" alt="新版促销焦点图C2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474103891437052940.jpg" alt="新版促销焦点图C1">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li style="background: rgb(118, 146, 60); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1803" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1474101785503846061.png" alt="新版促销焦点图A3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474101752544500541.jpg" alt="新版促销焦点图A2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1474101710649996605.jpg" alt="新版促销焦点图A1">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li style="background: rgb(163, 211, 60); width: 1419px; float: left;">
+            <a target="_blank" href="http://ad.lingshi.com/index.php/ad/ads/to_link/1674" class="cx_banner_link">
+                <div class="cx_banner_box cx_grid_c1">
+                    <div class="child child0" data-z="1">
+                        <img src="./促销页面_files/1454061717362465495.png" alt="新版促销焦点图B3" class="png">
+                    </div>
+                    <div class="child child1" data-z="2" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061709181949828.png" alt="新版促销焦点图B2" class="png">
+                    </div>
+                    <div class="child child2" data-z="3" style="margin-left: 0px;">
+                        <img src="./促销页面_files/1454061702796583740.png" alt="新版促销焦点图B1">
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <a ytag="30000" id="pre_btn" href="javascript:;" class="cx_banner_pre" style="display:none;"></a>
+    <a ytag="30010" id="next_btn" href="javascript:;" class="cx_banner_next" style="display:none;"></a>
+    <ul class="control">
+        <li class=""><a href="http://www.lingshi.com/cuxiao.htm#">1</a></li>
+        <li class="current"><a href="http://www.lingshi.com/cuxiao.htm#">2</a></li>
+        <li class=""><a href="http://www.lingshi.com/cuxiao.htm#">3</a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+<div class="bg" style="padding-top:20px;">
+    <div class="wrap fixed">
+        <div class="left_wrap">
+            <div class="discount">
+                <a href="javascript:;" class="discount1 on">限时<br>促销</a>
+                <a href="javascript:;" class="discount2 chagelimited" id="1">1-4折</a>
+                <a href="javascript:;" class="discount3 chagelimited" id="4">4-5折</a>
+                <a href="javascript:;" class="discount4 chagelimited" id="5">5-6折</a>
+                <a href="javascript:;" class="discount5 chagelimited" id="6">6-7折</a>
+                <a href="javascript:;" class="discount6 chagelimited" id="7">7-8折</a>
+                <a href="javascript:;" class="discount7 chagelimited" id="8">8折以上</a>
+                <a href="http://www.lingshi.com/list/?k=%CF%DE%CA%B1%B4%D9%CF%FA" class="discount8" id="0"
+                   target="_blank">所有折扣商品</a>
+            </div>
+        </div>
+        <div class="right_wrap" id="limited_list">
+            <ul class="snack" id="limited_id">
+
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13164.htm" target="_blank"
+                           title="力诚香辣味仿蟹柳*250g 约10袋" class="snack_img">
+                            <img alt="力诚香辣味仿蟹柳*250g 约10袋" width="130" height="130"
+                                 src="./促销页面_files/13164_thumb_G_1531403891951.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13164.htm" target="_blank"
+                           title="力诚香辣味仿蟹柳*250g 约10袋" class="name">力诚香辣味仿蟹柳*250g 约10袋</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        18.5
+                        <del>￥18.80</del>
+                    </p>
+                    <span class="tag">9折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13154.htm" target="_blank"
+                           title="阿伯仔脆鸭肠脆卤香辣味*250g 约11袋" class="snack_img">
+                            <img alt="阿伯仔脆鸭肠脆卤香辣味*250g 约11袋" width="130" height="130"
+                                 src="./促销页面_files/13154_thumb_G_1530672542670.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13154.htm" target="_blank"
+                           title="阿伯仔脆鸭肠脆卤香辣味*250g 约11袋" class="name">阿伯仔脆鸭肠脆卤香辣味*250g 约11袋</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        22.5
+                        <del>￥25.00</del>
+                    </p>
+                    <span class="tag">9折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13173.htm" target="_blank"
+                           title="盛歌焙怡牛奶味涂层饼干条*250 约10袋" class="snack_img">
+                            <img alt="盛歌焙怡牛奶味涂层饼干条*250 约10袋" width="130" height="130"
+                                 src="./促销页面_files/13173_thumb_G_1535678289787.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13173.htm" target="_blank"
+                           title="盛歌焙怡牛奶味涂层饼干条*250 约10袋" class="name">盛歌焙怡牛奶味涂层饼干条*250 约10袋</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        8
+                        <del>￥12.50</del>
+                    </p>
+                    <span class="tag">6折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13162.htm" target="_blank"
+                           title="宏香记香菇牛肉豆脯*250g 约8袋" class="snack_img">
+                            <img alt="宏香记香菇牛肉豆脯*250g 约8袋" width="130" height="130"
+                                 src="./促销页面_files/13162_thumb_G_1531386530784.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13162.htm" target="_blank"
+                           title="宏香记香菇牛肉豆脯*250g 约8袋" class="name">宏香记香菇牛肉豆脯*250g 约8袋</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        15
+                        <del>￥16.80</del>
+                    </p>
+                    <span class="tag">8折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13102.htm" target="_blank" title="妙纪菠萝蜜干95g"
+                           class="snack_img">
+                            <img alt="妙纪菠萝蜜干95g" width="130" height="130"
+                                 src="./促销页面_files/13102_thumb_G_1535532749576.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13102.htm" target="_blank" title="妙纪菠萝蜜干95g"
+                           class="name">妙纪菠萝蜜干95g</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        19.5
+                        <del>￥22.80</del>
+                    </p>
+                    <span class="tag">8折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13003.htm" target="_blank"
+                           title="顽皮兔妙乐滋优酪果冻黄桃味*500g 约6个" class="snack_img">
+                            <img alt="顽皮兔妙乐滋优酪果冻黄桃味*500g 约6个" width="130" height="130"
+                                 src="./促销页面_files/13003_thumb_G_1524277192270.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-13003.htm" target="_blank"
+                           title="顽皮兔妙乐滋优酪果冻黄桃味*500g 约6个" class="name">顽皮兔妙乐滋优酪果冻黄桃味*500g 约6个</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        10.8
+                        <del>￥25.00</del>
+                    </p>
+                    <span class="tag">4折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-12993.htm" target="_blank"
+                           title="水军比心肉松糯米饭锅巴120g" class="snack_img">
+                            <img alt="水军比心肉松糯米饭锅巴120g" width="130" height="130"
+                                 src="./促销页面_files/12993_thumb_G_1524023083949.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-12993.htm" target="_blank"
+                           title="水军比心肉松糯米饭锅巴120g" class="name">水军比心肉松糯米饭锅巴120g</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        9.8
+                        <del>￥12.00</del>
+                    </p>
+                    <span class="tag">8折</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-12986.htm" target="_blank"
+                           title="芳草草塔味葵瓜子 *250g 约15袋" class="snack_img">
+                            <img alt="芳草草塔味葵瓜子 *250g 约15袋" width="130" height="130"
+                                 src="./促销页面_files/12986_thumb_G_1522130282479.jpg">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-12986.htm" target="_blank"
+                           title="芳草草塔味葵瓜子 *250g 约15袋" class="name">芳草草塔味葵瓜子 *250g 约15袋</a>
+                    </p>
+                    <p class="price"><em>￥</em>
+                        5.5
+                        <del>￥6.80</del>
+                    </p>
+                    <span class="tag">8折</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="title">
+        <div class="title1"></div>
+        <a href="http://www.lingshi.com/list/?k=%D5%DB%BF%DB" class="more" target="_blank"></a>
+    </div>
+    <div class="wrap">
+        <div class="class">
+            <span class="a2 v_cat" id="v16"></span>
+            <span class="a11 v_cat" id="v219"></span>
+            <span class="a4 v_cat" id="v64"></span>
+            <span class="a9 v_cat" id="v89"></span>
+            <span class="a3 v_cat" id="v204"></span>
+            <span class="a6 v_cat" id="v39"></span>
+            <span class="b1" id="cat_ico"></span>
+            <span class="c1" id="top_ico"></span>
+            <span class="d1" id="man_ico"></span>
+        </div>
+        <div class="snack_wrap" id="volume_list">
+            <ul class="fixed" id="vcat_id">
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12941.htm" target="_blank" title="喜友纯脆猪肉脯100g"><img
+                            alt="喜友纯脆猪肉脯100g" width="160" height="160"
+                            src="./促销页面_files/12941_thumb_G_1531879725552.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12941.htm" target="_blank" title="喜友纯脆猪肉脯100g"
+                          class="name">喜友纯脆猪肉脯100g</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>22.80</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>22.80</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12941.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12958.htm" target="_blank"
+                       title="骥洋山椒鹌鹑蛋*250g 约7小包"><img alt="骥洋山椒鹌鹑蛋*250g 约7小包" width="160" height="160"
+                                                      src="./促销页面_files/12958_thumb_G_1516077906770.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12958.htm" target="_blank"
+                          title="骥洋山椒鹌鹑蛋*250g 约7小包" class="name">骥洋山椒鹌鹑蛋*250g 约7小包</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>11.00</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>11.00</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12958.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12963.htm" target="_blank"
+                       title="阿弟仔美国红酸樱桃干16g"><img alt="阿弟仔美国红酸樱桃干16g" width="160" height="160"
+                                                  src="./促销页面_files/12963_thumb_G_1523407250611.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12963.htm" target="_blank" title="阿弟仔美国红酸樱桃干16g"
+                          class="name">阿弟仔美国红酸樱桃干16g</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>4.80</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>4.80</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12963.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12981.htm" target="_blank"
+                       title="卫龙亲嘴烧红烧牛肉味28g"><img alt="卫龙亲嘴烧红烧牛肉味28g" width="160" height="160"
+                                                  src="./促销页面_files/12981_thumb_G_1524280904150.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12981.htm" target="_blank" title="卫龙亲嘴烧红烧牛肉味28g"
+                          class="name">卫龙亲嘴烧红烧牛肉味28g</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>1.00</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>1.00</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12981.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12382.htm" target="_blank"
+                       title="客家功夫泡鸡爪（香辣味）*260g 约7袋"><img alt="客家功夫泡鸡爪（香辣味）*260g 约7袋" width="160" height="160"
+                                                          src="./促销页面_files/12382_thumb_G_1530599011735.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12382.htm" target="_blank"
+                          title="客家功夫泡鸡爪（香辣味）*260g 约7袋" class="name">客家功夫泡鸡爪（香辣味）*260g 约7袋</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>12.50</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>12.50</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12382.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12599.htm" target="_blank"
+                       title="贝欧宝维C果汁虫虫软糖45g"><img alt="贝欧宝维C果汁虫虫软糖45g" width="160" height="160"
+                                                   src="./促销页面_files/12599_thumb_G_1531274542092.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12599.htm" target="_blank" title="贝欧宝维C果汁虫虫软糖45g"
+                          class="name">贝欧宝维C果汁虫虫软糖45g</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>4.00</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>4.00</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12599.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12600.htm" target="_blank"
+                       title="真之味日式秋刀鱼五香味*250g 约10袋"><img alt="真之味日式秋刀鱼五香味*250g 约10袋" width="160" height="160"
+                                                          src="./促销页面_files/12600_thumb_G_1530855110964.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12600.htm" target="_blank"
+                          title="真之味日式秋刀鱼五香味*250g 约10袋" class="name">真之味日式秋刀鱼五香味*250g 约10袋</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>14.50</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>14.50</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12600.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+                <li>
+                    <a href="http://www.lingshi.com/product/lingshi-12814.htm" target="_blank"
+                       title="醇然心动无糖薄荷糖（青柠薄荷味）50g"><img alt="醇然心动无糖薄荷糖（青柠薄荷味）50g" width="160" height="160"
+                                                        src="./促销页面_files/12814_thumb_G_1531881042189.jpg"></a>
+                    <p><a href="http://www.lingshi.com/product/lingshi-12814.htm" target="_blank"
+                          title="醇然心动无糖薄荷糖（青柠薄荷味）50g" class="name">醇然心动无糖薄荷糖（青柠薄荷味）50g</a></p>
+                    <div class="num fixed">
+                        <div class="fl">
+                            <span class="num1">1件</span>
+                            <span class="price1"><em>￥</em>4.20</span>
+                        </div>
+                        <div class="fr">
+                            <span class="num2">100件</span>
+                            <span class="price2"><em>￥</em>4.20</span>
+                        </div>
+                    </div>
+                    <p class="vs">vs</p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-12814.htm"
+                       target="_blank">加入购物车</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="title">
+        <div class="title2"></div>
+        <a href="http://www.lingshi.com/list/?t=combine" target="_blank" class="more"></a>
+    </div>
+    <div class="wrap">
+        <div class="combination_t">
+            <div class="combination_l">
+                <a href="http://www.lingshi.com/product/lingshi-11633.htm" target="_blank" title="咪咪虾味条20g*40包">
+                    <img alt="咪咪虾味条20g*40包" width="130" height="130" src="./促销页面_files/11633_thumb_G_1445572749095.jpg">
+                </a>
+                <div class="info">
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-11633.htm" class="name" target="_blank"
+                           title="咪咪虾味条20g*40包">咪咪虾味条20g*40包</a>
+                    </p>
+                    <p class="price1"><em>￥</em>20.00</p>
+                    <p class="price2">
+                        <del>￥24.00</del>
+                    </p>
+                    <a class="btn" title="加入购物车" href="http://www.lingshi.com/product/lingshi-11633.htm"
+                       target="_blank">加入购物车</a>
+                </div>
+                <span class="tag">共省4元</span>
+            </div>
+            <div class="combination_r fixed">
+                <ul>
+                    <li>
+                        <a href="http://www.lingshi.com/product/lingshi-11634.htm" target="_blank" title="咪咪蟹味粒20g*40包">
+                            <img alt="咪咪蟹味粒20g*40包" width="130" height="130"
+                                 src="./促销页面_files/11634_thumb_G_1445572749902.jpg">
+                        </a>
+                        <div class="info">
+                            <p><a href="http://www.lingshi.com/product/lingshi-11634.htm" target="_blank"
+                                  title="咪咪蟹味粒20g*40包" class="name">咪咪蟹味粒20g*40包</a></p>
+                            <p><span class="price1"><em>￥</em>20.00</span><span class="price2"><del>￥24.00</del></span>
+                            </p>
+                        </div>
+                        <span class="tag">共省4元</span>
+                    </li>
+                    <li>
+                        <a href="http://www.lingshi.com/product/lingshi-11618.htm" target="_blank"
+                           title="牛浪汉烧烤牛肉60g*3包">
+                            <img alt="牛浪汉烧烤牛肉60g*3包" width="130" height="130"
+                                 src="./促销页面_files/11618_thumb_G_1440404096864.jpg">
+                        </a>
+                        <div class="info">
+                            <p><a href="http://www.lingshi.com/product/lingshi-11618.htm" target="_blank"
+                                  title="牛浪汉烧烤牛肉60g*3包" class="name">牛浪汉烧烤牛肉60g*3包</a></p>
+                            <p><span class="price1"><em>￥</em>18.60</span><span class="price2"><del>￥22.50</del></span>
+                            </p>
+                        </div>
+                        <span class="tag">共省3.9元</span>
+                    </li>
+                    <li>
+                        <a href="http://www.lingshi.com/product/lingshi-11619.htm" target="_blank"
+                           title="牛浪汉泡椒牛肉60g*3包">
+                            <img alt="牛浪汉泡椒牛肉60g*3包" width="130" height="130"
+                                 src="./促销页面_files/11619_thumb_G_1466178521927.jpg">
+                        </a>
+                        <div class="info">
+                            <p><a href="http://www.lingshi.com/product/lingshi-11619.htm" target="_blank"
+                                  title="牛浪汉泡椒牛肉60g*3包" class="name">牛浪汉泡椒牛肉60g*3包</a></p>
+                            <p><span class="price1"><em>￥</em>18.00</span><span class="price2"><del>￥22.50</del></span>
+                            </p>
+                        </div>
+                        <span class="tag">共省4.5元</span>
+                    </li>
+                    <li>
+                        <a href="http://www.lingshi.com/product/lingshi-11222.htm" target="_blank"
+                           title="小老板紫菜海苔片经典原味36g*3">
+                            <img alt="小老板紫菜海苔片经典原味36g*3" width="130" height="130"
+                                 src="./促销页面_files/11222_thumb_G_1426750159788.jpg">
+                        </a>
+                        <div class="info">
+                            <p><a href="http://www.lingshi.com/product/lingshi-11222.htm" target="_blank"
+                                  title="小老板紫菜海苔片经典原味36g*3" class="name">小老板紫菜海苔片经典原味36g*3</a></p>
+                            <p><span class="price1"><em>￥</em>32.40</span><span class="price2"><del>￥57.00</del></span>
+                            </p>
+                        </div>
+                        <span class="tag">共省24.6元</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="combination_b">
+            <ul class="snack fixed">
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-11218.htm" target="_blank"
+                           title="3点一刻港式奶茶120g*3" class="snack_img"><img alt="3点一刻港式奶茶120g*3" width="130" height="130"
+                                                                         src="./促销页面_files/11218_thumb_G_1441866047951.jpg"></a>
+                    </p>
+                    <p><a href="http://www.lingshi.com/product/lingshi-11218.htm" target="_blank" title="3点一刻港式奶茶120g*3"
+                          class="name">3点一刻港式奶茶120g*3</a></p>
+                    <p class="price"><em>￥</em>37.00
+                        <del>￥51.60</del>
+                    </p>
+                    <span class="tag">共省14.6元</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-11214.htm" target="_blank"
+                           title="佳栗福甘栗开口栗180g*2包" class="snack_img"><img alt="佳栗福甘栗开口栗180g*2包" width="130" height="130"
+                                                                          src="./促销页面_files/11214_thumb_G_1414462736649.jpg"></a>
+                    </p>
+                    <p><a href="http://www.lingshi.com/product/lingshi-11214.htm" target="_blank"
+                          title="佳栗福甘栗开口栗180g*2包" class="name">佳栗福甘栗开口栗180g*2包</a></p>
+                    <p class="price"><em>￥</em>24.00
+                        <del>￥49.00</del>
+                    </p>
+                    <span class="tag">共省25元</span>
+                </li>
+                <li>
+                    <p>
+                        <a href="http://www.lingshi.com/product/lingshi-11131.htm" target="_blank" title="佳栗福甘粟仁180*3包"
+                           class="snack_img"><img alt="佳栗福甘粟仁180*3包" width="130" height="130"
+                                                  src="./促销页面_files/11131_thumb_G_1407827315132.jpg"></a>
+                    </p>
+                    <p><a href="http://www.lingshi.com/product/lingshi-11131.htm" target="_blank" title="佳栗福甘粟仁180*3包"
+                          class="name">佳栗福甘粟仁180*3包</a></p>
+                    <p class="price"><em>￥</em>42.00
+                        <del>￥50.00</del>
+                    </p>
+                    <span class="tag">共省8元</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var adobj = {
+        dom: '#menu_sp_hide',
+        aid: 368,
+        act: 'prepend',
+        fn: function (ads) {
+            if (ads != undefined) {
+                var title = ads.imt_title != '' ? ads.imt_title : ads.img_alt != '' ? ads.img_alt : ads.ad_name;
+                var html = '<a class="app_full" href="' + ads.ad_link + '" target="_blank" style="margin:5px 0 20px;background:' + ads.bannerbg + ' url(' + ads.ad_path + ads.ad_code + ')  top center no-repeat;height:' + ads.ad_height + 'px;" title="' + title + '">手机版客户端正式上线啦！</a>';
+                return html;
+                // $('#menu_sp_hide').prepend(html);
+            }
+
+        }
+    }
+    create_ads(adobj, 'http://www.lingshi.com/');
+    $(function () {
+        $("#formMsg2").submit(function (e) {
+            e.preventDefault();
+            msg_title = this.elements['msg_title'].value;
+            if (!submitCom_view(msg_title)) {
+                return false;
+            }
+            msg_content = this.elements['msg_content'].value;
+            if (!submitCom_view2(msg_content)) {
+                return false;
+            }
+            var url = this.action;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: {msg_title: $("#msg_title").val(), msg_content: $("#msg_content").val(), act: $("#act").val()},
+                success: function (json) {
+                    if (json.error == 1) {
+                        $(".box5").hide();
+                        $('.view_succeed').show();
+                        setTimeout("$('.view_wrap').hide()", 1000);
+                        $('#objection').click(function () {
+                            $(".box5").show();
+                            $('.view_succeed').hide();
+                            $('#msg_title,#msg_content').val('');
+                        })
+                    } else {
+                        $('#content_notice').html(json.content);
+                        return false;
+                    }
+                }
+            });
+        });
+    });
+</script>
+<div style="display:none;">
+    <script src="./促销页面_files/stat.php" language="JavaScript"></script>
+    <script src="./促销页面_files/core.php" charset="utf-8" type="text/javascript"></script>
+    <a href="https://www.cnzz.com/stat/website.php?web_id=2649363" target="_blank" title="站长统计">站长统计</a></div>
+<script type="text/javascript">
+    (function () {
+        var _53code = document.createElement("script");
+        _53code.src = "https://tb.53kf.com/code/code/9007929/1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(_53code, s);
+    })();
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?acc1c6cb1acc353880abc3cd8764c366";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script language="javascript" src="/static/App/product/js/tab.js.下载"></script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+    $(function () {
+        //限暑促销ajax切换
+        $('.chagelimited').click(function (event) {
+            var _this = this;
+            var count = $(this).attr('id');
+            $(this).addClass('dissel').siblings('a').removeClass('dissel');
+            if (count == 'limitednone') return false;
+            //判断页面是否存在折扣促销，存在不请求，
+            if ($('#limited_id' + count).length <= 0) {
+                $.ajax({
+                    url: domain + 'cuxiao.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {act: 'ajaxlimited', count: count},
+                    success: function (data) {
+                        if (data.contents.replace(/^\s*|\s*$/g, "").length != 0) {
+                            $('#limited_list').children('ul').hide();
+                            $('#limited_list').append('<ul class="snack" id="limited_id' + count + '">' + data.contents + '</ul>');
+                        } else {
+                            $(_this).addClass('none').attr('id', 'limitednone').html('无此折扣');
+                        }
+                    }
+                });
+            } else {
+                $('#limited_list').children('ul').hide();
+                $('#limited_id' + count).show();
+            }
+        });
+        //多买多折扣ajax切换
+        $('.v_cat').click(function (event) {
+            var vid = $(this).attr('id');
+            var value = vid.replace(/[^0-9]/ig, "");
+            volume_animate(value);
+            // $(this).addClass('dissel').siblings('a').removeClass('dissel');
+            //判断页面是否存在该分类多买多折扣，存在不请求，
+            if ($('#vcat_id' + value).length <= 0) {
+                $.ajax({
+                    url: domain + 'cuxiao.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {act: 'ajaxvolume', cat: value},
+                    success: function (data) {
+                        $('#volume_list').children('ul').hide();
+                        $('#volume_list').append(data.contents);
+                    }
+                });
+            } else {
+                $('#volume_list').children('ul').hide();
+                $('#vcat_id' + value).show();
+            }
+        });
+        var $window = $(window),
+            window_width = $window.width();
+        $('#cx_ban, #cx_banner_ul li').width(window_width);
+        new $.Tab({
+            target: $('#cx_banner_ul li'),
+            effect: 'slide3d',
+            animateTime: 1000,
+            stay: 5500,
+            autoPlay: true,
+            merge: true,
+            prevBtn: $('#pre_btn'),
+            nextBtn: $('#next_btn')
+        });
+    });
+
+    /*
+     * 多买多折扣分类移动动画
+     * val 分类id
+    */
+    function volume_animate(val) {
+        //分类class
+        var volObj = {
+            '49': 1,
+            '16': 2,
+            '204': 3,
+            '64': 4,
+            '76': 5,
+            '39': 6,
+            '93': 7,
+            '59': 8,
+            '89': 9,
+            '142': 10,
+            '219': 11
+        };
+        var aniObj = {
+            '49': {'top': '103px', 'left': '182px'},
+            '16': {'top': '81px', 'left': '242px'},
+            '204': {'top': '75px', 'left': '292px'},
+            '64': {'top': '77px', 'left': '369px'},
+            '76': {'top': '81px', 'left': '434px'},
+            '39': {'top': '76px', 'left': '551px'},
+            '93': {'top': '74px', 'left': '618px'},
+            '59': {'top': '79px', 'left': '685px'},
+            '89': {'top': '78px', 'left': '873px'},
+            '142': {'top': '79px', 'left': '931px'},
+            '219': {'top': '84px', 'left': '1064px'}
+        }
+        $('#cat_ico').attr('class', 'b' + volObj[val]);
+        $('#man_ico').stop().animate({left: aniObj[val]['left'], top: aniObj[val]['top']}, 500, "swing");
+        $('#top_ico').attr('class', 'c' + volObj[val]);
+    }
+</script>
+<script type="text/javascript" src="/static/App/product/js/lazyload.js.下载"></script>
+
+<div id="AutocompleteContainter_58211" style="position: absolute; z-index: 9999; top: 102px; left: 440.6px;">
+    <div class="autocomplete-w1">
+        <div class="autocomplete" id="Autocomplete_58211" style="display: none; width: 415px; max-height: 300px;"></div>
+    </div>
+</div>
+<div id="sb-container">
+    <div id="sb-overlay"></div>
+    <div id="sb-wrapper">
+        <div id="sb-title">
+            <div id="sb-title-inner"></div>
+        </div>
+        <div id="sb-title-img"><a id="sb-title-close" title="关闭" onclick="Shadowbox.close()"></a></div>
+        <div id="sb-wrapper-inner">
+            <div id="sb-body">
+                <div id="sb-body-inner"></div>
+                <div id="sb-loading">
+                    <div id="sb-loading-inner"><span>读取中</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="sb-info">
+            <div id="sb-info-inner">
+                <div id="sb-counter"></div>
+                <div id="sb-nav"><a id="sb-nav-close" title="关闭" onclick="Shadowbox.close()"></a><a id="sb-nav-next"
+                                                                                                    title="下一页"
+                                                                                                    onclick="Shadowbox.next()"></a><a
+                        id="sb-nav-play" title="执行" onclick="Shadowbox.play()"></a><a id="sb-nav-pause" title="暂停"
+                                                                                      onclick="Shadowbox.pause()"></a><a
+                        id="sb-nav-previous" title="上一页" onclick="Shadowbox.previous()"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="hz6d_flp_jquery" src="/static/App/product/js/jquery-1.4.2.flp.js.下载" charset="utf-8" type="text/javascript"></script>
+</body>
+{% endblock body %}

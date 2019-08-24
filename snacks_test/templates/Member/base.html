@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block scripts %}
+    <link href="{% static 'Member/css/menu.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'Member/css/common.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'Member/css/customer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'Member/css/tab.css' %}" rel="stylesheet" type="text/css">
+    {% endblock scripts %}
+    {% block script %}
+    {% endblock script %}
+    {% block styles %}
+    {% endblock styles %}
+{% block body %}
+    <div id="main">
+
+    <div class="block box">
+        <div id="ur_here">
+            当前位置: <a href="http://www.lingshi.com/" title="中国零食网">首页</a> <code>&gt;</code> 用户中心
+        </div>
+    </div>
+
+    <div class="blank"></div>
+    <div id="logincontent">
+
+        <div class="loginsideleft">
+            <div><a href="http://member.lingshi.com/" class="my_account">我的零食网</a></div>
+            <div class="userMenu mt10">
+                <h5 class="btn-slide">订单中心</h5>
+                <ul class="panel">
+                    <li><a href="{% url 'member:order_list' %}">我的订单</a></li>
+                    <!-- <li><a href="http://mall.lingshi.com/index.php?app=buyer_order" target="_blank">商城订单</a></li> -->
+                    <li><a href="{% url 'member:old_list' %}">历史订单</a></li>
+                    <li><a href="{% url 'member:collection' %}">我的收藏</a></li>
+                    <li><a href="#">我的评论</a></li>
+                </ul>
+                <h5 class="btn-slide">账户中心</h5>
+                <ul class="panel">
+                    <li><a href="{% url 'member:profile' %}">个人信息</a></li>
+                    <li><a href="#">我的积分</a>
+                    </li>
+                    <li><a href="#">我的代金券</a>
+                    </li>
+                    <li><a href="#">账户余额</a>
+                    </li>
+                    <li><a href="#">礼品卡充值</a>
+                        <!-- <li><a href="http://member.lingshi.com/?act=bind_member_card" >绑定会员卡</a></li> -->
+                    </li>
+                    <li><a href="{% url 'member:address' %}">收货信息</a></li>
+
+                    <li><a href="{% url 'member:password' %}">修改密码</a></li>
+                </ul>
+                <h5 class="btn-slide">服务中心</h5>
+                <ul class="panel">
+                    <li><a href="{% url 'member:dingdan' %}">订单速查</a></li>
+                    <!-- <li><a href="http://member.lingshi.com/?act=return_order" >退换货申请</a></li> -->
+                    <!-- <li><a href="http://member.lingshi.com/?act=my_order_return" >退换货记录</a></li> -->
+                    <!-- <li><a href="http://www.lingshi.com/user_email.php?act=user_email" >订阅优惠信息</a></li> -->
+                    <li><a href="#">会员留言</a></li>
+                    <li><a href="#">我要投诉</a></li>
+                    <!-- <li><a href="http://member.lingshi.com/?act=vote_inline" >网络调查</a></li> -->
+                    <!--<li><a href="http://www.lingshi.com/customer.php?act=booking_list">缺货登记</a></li>-->
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".btn-slide").click(function () {
+                        $(this).next(".panel").slideToggle("fast");
+                        $(this).toggleClass("active");
+                    });
+                });
+            </script>
+        </div>
+        {% block loginsideright %}
+
+        {% endblock loginsideright %}
+    </div>
+    <div class="blank"></div>
+</div>
+<br>
+<div class="clear"></div>
+{% endblock body %}
+
+

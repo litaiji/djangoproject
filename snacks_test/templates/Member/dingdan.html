@@ -1,0 +1,71 @@
+{% extends 'Member/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link href="{% static 'Member/css/dingdan.css' %}" rel="stylesheet" type="text/css">
+    <script language="javascript" src="{% static 'Member/js/dingdan.js' %}"></script>
+{% endblock scripts %}
+{% block body %}
+<div class="wrap">
+    <form action="http://www.lingshi.com/dingdan.php?act=dingdantable" id="dingform" method="post" name="dingform">
+        <div class="order">
+            <div class="title">订单速查</div>
+            <table id="table_order" border="0" cellspacing="0" cellpadding="0" class="table_order">
+                <tbody>
+                <tr>
+                    <td width="140" align="right"><i>*</i>您的订单号：</td>
+                    <td width="220"><input name="orderid" type="text" class="inputBg" id="orderid"></td>
+                    <td width="140" align="right">或<i>*</i>收货人姓名：</td>
+                    <td width="120"><input name="name" style="width:100px;" type="text" class="inputBg" id="name"></td>
+                    <td width="480"><span class="tips">（订单号、收货人姓名可任选一项）</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><span class="notice"></span></td>
+                    <td>&nbsp;</td>
+                    <td colspan="2"><span class="notice"></span></td>
+                </tr>
+                <tr>
+                    <td align="right"><i>*</i>联系方式：</td>
+                    <td><input name="phone" type="text" class="inputBg" id="phone"></td>
+                    <td colspan="3"><span class="tips">（可输入手机或电话，电话格式：020-12345678）</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><span class="notice" id="returnMsg"></span></td>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="fixed"><a><input type="submit" name="submit" class="btn_search" value="查询"></a><a
+                    onclick="document.dingform.reset()" class="btn_reset">重&nbsp;&nbsp;置</a></p>
+        </div>
+    </form>
+    <div id="box1" style="display:none;">
+        <div class="title2">以下您查询的订单信息：<a href="http://member.lingshi.com/">进入我的账户&gt;&gt;</a></div>
+        <table class="table_order2" id="table_order2" width="200" border="0" cellpadding="0" cellspacing="1">
+            <tbody>
+            <tr>
+                <th scope="col">订单号</th>
+                <th scope="col">收货人</th>
+                <th scope="col">订单金额(元)</th>
+                <th scope="col">订单状态</th>
+                <th scope="col">下单时间</th>
+                <th scope="col">发货时间</th>
+                <th scope="col">物流公司</th>
+                <th scope="col">运单号</th>
+            </tr>
+            <tr id="tr1">
+                <td colspan="8">暂无订单记录!</td>
+            </tr>
+            <tr class="tr2">
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="other">如还有需要帮助，请致电客服热线：400-600-0404</p>
+</div>
+
+
+<div class="h20"></div>
+<div class="clear"></div>
+{% endblock body %}

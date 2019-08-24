@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+{% block content %}
+    <div class="row">
+
+    <div style="background-image: url('{% static 'admin/images/ti12g.jfif' %}');height: 1024px;width: 1024px" >
+
+        <div style="margin: 20px">
+            {% if not request.session.is_login %}
+                <div style="font-size: 30px;">
+                    <span><a href="{% url 'admin:index'%}?id=1" style="color: black;margin-left: 51px">登录</a></span>
+                    <span><a href="{% url 'admin:index'%}?id=2" style="color: black;margin-left: 49px">注册</a></span>
+                </div>
+
+                {% if dd == 1%}
+                    <form action="{% url 'admin:login' %}" method="post">
+                        {% csrf_token %}
+                        <div>用户名<input type="text" name="registration_number" style="margin-left:13px;"></div>
+                        <div>密码<input type="password" name="password" style="margin-left:26px;"></div>
+                        <div style="margin-left:122px;"><input type="submit" value="登录" style="width: 100px"></div>
+                    </form>
+                {% elif dd == 2 %}
+                    <form action="{% url 'admin:register' %}" method="post">
+                        {% csrf_token %}
+                        <div>用户名<input type="text" name="registration_number" style="margin-left:16px;"></div>
+                        <div>密码<input type="password" name="password" style="margin-left:29px;"></div>
+                        <div>确认密码<input type="password" name="repassword" style="margin-left:3px;"></div>
+                        <div>用户类型
+                            <select name="user_type" style="width: 168px">
+                                <option value="">选择类型</option>
+                                <option value="1">普通用户</option>
+                                <option value="0">管理员</option>
+                            </select>
+                        </div>
+                        <div style="margin-left:123px;"><input type="submit" value="注册" style="width: 100px"></div>
+                    </form>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block jss %}
+
+{% endblock %}

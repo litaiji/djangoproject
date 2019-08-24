@@ -1,0 +1,54 @@
+{% extends 'admin/base.html' %}
+
+{% block css %}
+
+{% endblock %}
+{% block content %}
+ <div class="row">
+        <div class="col-xs-12">
+
+            <form action="{% url 'admin:compile' %}" method="post" id="luoxixi" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="height: 150px">
+                    <span style="height: 100px"><img src="/static/admin/{{ user.user_info.chathead }}" style="height: 100px"></span>
+                    <span><input name="chathead" type="file" /></span>{{ chathead_msg }}
+                </div>
+                <div>
+                    <span>用户名<input type="text" name="registration_number" value="{{ user.registration_number }}" readonly></span> <br><span></span><br>
+                    <span>昵称<input type="text" name="nickname" value="{{ user.user_info.nickname }}" ></span> <br><span></span><br>
+                    <span>密码<input type="text" name="password" placeholder="输入密码"></span><br><span></span><br>
+                    <span>确认密码<input type="text" name="repassword" placeholder="输入确认密码"></span>{{ password_msg }}<br><span></span><br>
+                    <span>用户类型
+
+                            {% if user.usertype == 2 %}
+                                <select name="usertype" id="usertype" style="width: 200px">
+                                <option value="1" selected>普通用户</option>
+                                <option value="0">管理者</option>
+                                </select>
+                            {% else %}
+                                <select name="usertype" id="usertype" style="width: 200px">
+                                <option value="1" >普通用户</option>
+                                <option value="0" selected>管理者</option>
+                                </select>
+                            {% endif %}
+
+                    </span><br><span></span><br>
+                    <span>年龄<input type="text" name="age" value="{{ user.user_info.age }}"></span><br><span></span><br>
+                    <span>生日<input type="text" name="birthday" value="{{ user.user_info.birthday }}"></span><br><span></span><br>
+                    <span>籍贯<input type="text" name="native_place" value="{{ user.user_info.native_place }}"></span><br><span></span><br>
+                    <div style="width: 310px;height: 35px">签名: &nbsp;<div style="width: 300px;height: 30px;border: 1px solid black;border-radius: 3px;text-align: center">{{ user.user_info.signature }}</div></div><br><span></span><br>
+                    <span>签名 <textarea name="signature" id="signature" cols="30"  ></textarea></span><br><span></span><br>
+                    <span><input type="submit"></span> {{ msg }}
+
+
+                </div>
+
+            </form>
+
+        </div>
+ </div>
+{% endblock %}
+
+{% block jss %}
+
+{% endblock %}

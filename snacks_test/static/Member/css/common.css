@@ -1,0 +1,156 @@
+/*change*/
+#main {width: 1200px;margin: 15px auto 0px auto;}
+*html .clearfix{height:1%;}
+*+html .clearfix{height:1%;}
+.clearfix:after{content:"."; display:block; height:0; clear:both;visibility:hidden;}
+
+/*common*/
+body {
+	color:#666;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background: White;
+	padding:0;margin:0;
+}
+
+img{border:0}
+a {color:#333;text-decoration:none;}
+a:hover{color:#f60;}
+dl,dt,dd,h2,form,h1,h2,h3,h4,h5,p,ul,li,input{
+	margin:0;padding:0;
+	list-style:none;
+	list-style: none outside none;
+}
+.clear{
+	clear:both;
+}
+/*common*/
+
+.fixed:after{content:".";display:block;clear:both;height:0;visibility:hidden;}
+.fixed{display:block;min-height:1%;}
+
+
+.ddg{
+	line-height:14px;
+	height:28px;
+	width:158px;
+	overflow:hidden;
+	padding-bottom:5px;
+	word-wrap: break-word;
+}
+
+/* showbox */
+.success_cart p { font-family:"微软雅黑","Microsoft YaHei"; font-size:14px; font-weight:700; text-align:center; margin-top:10px  }
+.success_cart p a { color:#f00; }
+.success_cart p a:hover { color:#f00; }
+.success_cart {
+	width:385px;
+	font-size:13px;
+	margin:8px 0; }
+
+.success_cart1 {
+	margin:0 auto;
+	width:144px; }
+
+.other_msg {
+	margin:0 auto;
+	padding-top: 2px;
+	height: 38px;
+	width: 365px;
+	color: #FF0000;
+	text-align:center;
+}
+
+.other_msg .notice {
+	float:left;
+	margin-left: 5px;
+}
+
+.other_msg .div_msg {
+	float:left;
+	margin-left: 5px;
+	width: 360px;
+}
+
+.success_cart1 img{
+	margin-right:5px; }
+
+.success_cart span{
+	width:226px; height:1px;
+	display:block;
+	margin:10px auto; }
+
+.btnM, .btnS, .btnA, .btnB {
+	width:67px;  height:22px;
+	margin:0 4px;
+	text-decoration:none;
+	text-align:center;
+	line-height:22px;
+	font-size:12px;
+	display:block;
+	float:left; }
+
+.btnM {
+	background:url(../images/btn.png) 0 0 no-repeat;
+	color:#111; }
+
+.btnS {
+	background:url(../images/btn.png) 0 -24px no-repeat;
+	color:#fff;
+	cursor:pointer; }
+
+.btnA {
+	background:url(../images/btn.png) -67px 0 no-repeat;
+	color:#111; }
+
+.btnB {
+	background:url(../images/btn.png) -67px -24px no-repeat;
+	color:#fff;
+	cursor:pointer; }
+
+
+a.btnS:hover,a.btnB:hover {color:#fff; }
+
+
+.success_cart_btn {
+	width:160px; height:24px;
+	margin:0 auto; }
+
+
+.picone dt,.picone1 dt,.pr1 dt,.pr2 dt,.pr5 dt,.prod dt {
+	position:relative;
+}
+
+.picone dt span, .picone1 dt span{
+	color: #FFFFFF;
+}
+
+/* 产品状态 */
+.status1, .status2, .status3, .status4, .status5, .status6, .status7 {
+	position:absolute;  top:0;  left:0;
+	width:54px;  height:54px;
+	text-align:center;
+	line-height:54px;
+	font-size:13px;
+	color:#fff;
+	background-image:url(../images/status.png);
+	background-repeat: no-repeat;
+}
+
+.status1 { background-position: 0 0; }
+.status2 { background-position:-55px 0; }
+.status3 { background-position:-110px 0; }
+.status4 { background-position:-165px 0; }
+.status5 { background-position:-220px 0; }
+.status6 { background-position:-275px 0; }
+.status7 { background-position:-330px 0; }
+
+/* 验证码 */
+.captcha_img {
+	vertical-align: bottom;
+	cursor: pointer;
+}
+
+/* 收货地址 */
+.btn_address { padding: 0px 12px; height:32px; line-height:32px; font-size:13px; background:#eee; color:#666; border:1px solid #ccc; display:inline-block; text-align:center; cursor: pointer; }
+.btn_address:hover { color: red;}

@@ -1,0 +1,668 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>确认订单信息-中国零食网</title>
+<meta name="Keywords" content="零食网,休闲零食,零食团购,进口零食,品牌零食,肉类零食,海味零食,特色零食,特产零食,零食加盟,零食商城,健康零食,营养零食,减肥零食,办公室零食,零食批发,零食工坊,零食网购,美味零食,外国零食,日本零食,小零食,好吃零食" />
+<meta name="Description" content="中国零食网是国内购买食品质量安全保险的网上零食网站，坚持每日8款零食秒杀，在线销售各种零食品牌、特产零食、进口零食、休闲零食、办公室零食等，让您尽享美味安全食品" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+
+<link href="http://www.lingshi.com/templates/default/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="http://www.lingshi.com/templates/default/css/header_footer.css" rel="stylesheet" type="text/css" />
+<link href="http://www.lingshi.com/templates/default/css/cart.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://www.lingshi.com/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+var domain = "http://www.lingshi.com/"; var Cart_Path = "http://pay.lingshi.com/"; var Customer_Path = "http://member.lingshi.com/";
+document.domain = 'lingshi.com';
+</script>
+<script type="text/javascript" src="http://www.lingshi.com/js/jquery.json-1.3.js"></script>
+<script type="text/javascript" src="http://www.lingshi.com/js/common.js"></script>
+<script type="text/javascript" src="http://www.lingshi.com/js/shopping.js?t=11015"></script>
+<script type="text/javascript" src="http://www.lingshi.com/js/kf.js"></script>
+<script type="text/javascript" src="http://www.lingshi.com/js/header_footer.js"></script>
+
+<!--[if lte IE 6]>
+<script  type="text/javascript"  src="http://www.lingshi.com/js/transparentPNG.js" ></script>
+<script>
+  DD_belatedPNG.fix('.services a');
+</script>
+<![endif]-->
+</head>
+
+<body>
+<div id="head">
+	<div id="top" class="fixed">
+	<div id="topContent">
+		<ul id="topLeft">
+			{% if 'username' in request.session %}
+                  <li>
+{#                        <script type="text/javascript" src="http://www.lingshi.com/static_state.php?act=login"></script>#}
+                        <link rel="stylesheet" type="text/css" href="http://www.lingshi.com/js/shadowbox/shadowbox.css">
+{#                        <script type="text/javascript" src="http://www.lingshi.com/js/shadowbox/shadowbox.js"></script>#}
+                        您好，<font class="f4_b"><a id="loginI" href="{% url 'member:index' %}" class="" uid="947445">{{ request.session.username }}</a></font>,
+                        欢迎您回来！ <a href="{% url 'member:index' %}" style="color:#FF6628;" rel="nofollow">用户中心</a>&nbsp;|&nbsp;
+                        <a href="{% url 'member:logout' %}" rel="nofollow">退出</a>
+                        <script type="text/javascript">var userid = '947445';</script>
+                    </li>
+                {% else %}
+                   <li>
+                    <link rel="stylesheet" type="text/css" href="http://www.lingshi.com/js/shadowbox/shadowbox.css">
+                    您好，欢迎您来到中国零食网！ &nbsp;&nbsp; <a href="{% url 'member:login' %}">登录</a> &nbsp;|&nbsp; <a href="{% url 'member:register' %}">注册</a>
+                </li>
+                {% endif %}
+		</ul>
+		<ul id="topRight">
+			<li id="weibo_text"><a href="javascript:void(0);" class="weibo" rel="nofollow">官方微博<!--[if gte IE 7]><!--></a><!--<![endif]-->
+				<!--[if lte IE 6]><table><tr><td><![endif]-->
+				<div class="weibo_wrap">
+					<a href="http://weibo.com/lingshi001" target="_blank" class="weibo_icon1" rel="nofollow" title="中国零食网 - 新浪微博"></a><a href="http://weibo.com/lingshi001" target="_blank" rel="nofollow">新浪微博</a>
+					<a href="http://e.t.qq.com/chinalingshi001" target="_blank" class="weibo_icon2" rel="nofollow" title="中国零食网 - 腾讯微博"></a><a href="http://e.t.qq.com/chinalingshi001" target="_blank" rel="nofollow">腾讯微博</a>
+				</div>
+				<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+			</li>
+			<li>|</li>
+			<li><a href="http://art.lingshi.com/articles/articles/bangzhu" target="_blank" rel="nofollow">帮助中心</a></li>
+			<li>|</li>
+			<li><a href="http://www.lingshi.com/duihuan.htm" target="_blank" rel="nofollow">积分兑换</a></li>
+			<li>|</li>
+			<li><a href="http://www.lingshi.com/dingdan.htm" target="_blank" rel="nofollow">订单速查</a></li>
+			<li>|</li>
+			<li><a href="http://member.lingshi.com/?act=order_list" class="loginajax" target="_blank" rel="nofollow">我的订单</a></li>
+			<li>|</li>
+			<li><a href="http://www.lingshi.com/app.php" target="_blank" rel="nofollow">手机版客户端</a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+$('.loginajax').click(function(event) {
+	if(userid == ''){
+		loginRegShow('login','http://member.lingshi.com/?act=order_list');
+		return false;
+	}
+});
+</script>	<div class="clear"></div>
+</div>
+
+<div class="head_cart">
+	<div class="wrap"><a class="logo" href="http://www.lingshi.com/" title="中国零食网"></a><div class="status2"></div></div>
+</div>
+
+<div class="clear"></div>
+
+<div class="wrap2">
+
+	<div class="title">填写并确认订单信息<a style="font-size:12px; font-family:宋体; color:#458df0; margin-left:10px;margin-right:10px;float:right;font-weight:normal;" href="http://art.lingshi.com/articles/articles/bangzhu/16" target="_blank">运费说明</a></div>
+	<div class="new_address" >
+		<div class="address_title">确认收货地址</div>
+				<ul class="info_address fixed" id="addresslist">
+{#                    <a href="{% url 'tmp:zhifu' gid=gid bid=bid  %}">#}
+                    {% for address in addresses%}
+                        {% if address.ishot == 2 %}
+                    <li id="address_{{ address.id }}"  class="select"  -onclick="setDelivery(this, {{ address.id }} )">
+                    {% else %}
+                            <li id="address_{{ address.id }}"   -onclick="setDelivery(this, {{ address.id }} )">
+                    {% endif %}
+                        <p class="bb"><b>{{ address.receive }}</b>
+                            <span class="tel">{{ address.telephone }}</span>
+                        </p>
+                        <p class="address">{{ address.address }}</p>
+                        <p class="edit">
+{#                            <a href="javascript:;" onclick="addEditAddress(272289);" class="modify">修改</a>#}
+{#                            <a href="javascript:;" onclick="delAddress(272289,event);" class="del">删除</a>#}
+                            <a href="{% url 'tmp:zhifu' gid=gid bid=bid cid=address.id %}"  -class="del">选中</a>
+                        </p>
+                        {% if address.isdefault == 1 %}
+                        <span class="default" style="display:block;">默认地址</span>
+                            {% else %}
+
+                    {% endif %}
+                    </li>
+                        </a>
+                    {% endfor %}
+{#                </a>#}
+{#                    <a href="{% url 'member:address_write' %}">#}
+                    <li class="" id="newAddress" -onclick="addEditAddress(0);">
+                        <a href="{% url 'member:address_write' %}" class="add">+</a>
+                        <a href="{% url 'member:address_write' %}" class="new">使用新地址</a>
+                    </li>
+{#                        </a>#}
+								</ul>
+				<script type="text/javascript" src="http://www.lingshi.com/js/region.js"></script>
+		<script type="text/javascript" src="http://www.lingshi.com/js/utils.js"></script>
+		<script type="text/javascript">
+			var back_act = "";
+
+			region.isAdmin = false;
+							var consignee_not_null = "收货人姓名不能为空！";
+							var country_not_null = "国家";
+							var province_not_null = "省份";
+							var city_not_null = "城市";
+							var district_not_null = "区域";
+							var invalid_email = "您输入的邮件地址不是一个合法的邮件地址。";
+							var address_not_null = "收货人的详细地址不能为空！";
+							var tele_not_null = "电话不能为空！";
+							var shipping_not_null = "请您选择配送方式！";
+							var payment_not_null = "请您选择支付方式！";
+							var goodsattr_style = "1";
+							var tele_invaild = "电话号码不是有效的号码！";
+							var zip_not_num = "邮政编码只能填写数字";
+							var mobile_invaild = "手机号码不是合法号码！";
+					</script>
+	</div>
+
+	<div class="clear"></div>
+<form action="{% url 'tmp:zhifu' gid=gid bid=bid cid=0 %}" method="post" name="orderForm" id="orderForm">
+    {% csrf_token %}
+	<input type="hidden" name="step" value="done">
+		<input type="hidden" name="deliveryman" value="272289" />
+		<div class="pay_way">
+		<div class="pay_way_title">选择支付方式</div>
+		<table width="540" border="0" cellpadding="0" cellspacing="0" class="table_info2 mt10" cellspcing="0">
+						<tr>
+				<td onclick="togglePayOnline(this)" style="cursor:pointer">
+					<a class="icon_add"></a>
+					&nbsp;&nbsp; <b>在线支付</b>
+				</td>
+				<td>
+					<span style="color:#ff6000;">包含支付宝、财付通、快钱支付、银行卡</span>
+				</td>
+			</tr>
+		</table>
+				<table id="pay_online_tbl" class="table_bank mt20" width="1120" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+				<td width="70" align="right">支付平台</td>
+				<td width="1030">
+															<span class="bank">
+						<input type="radio" name="payment" value="5" id="pay_5" checked="checked" />
+						<label for="pay_5">
+							<img src="http://www.lingshi.com/templates/default/images/banklogo/alipay.png" alt="支付宝" width="130" height="40"/>
+						</label>
+					</span>
+																														<span class="bank">
+						<input type="radio" name="payment" value="4" id="pay_4"  />
+						<label for="pay_4">
+							<img src="http://www.lingshi.com/templates/default/images/banklogo/tenpay.png" alt="财付通" width="130" height="40"/>
+						</label>
+					</span>
+																																																		<span class="bank" style="cursor:pointer" onclick="toggleKuaiqian(this)">
+						<a class="icon_reduce mt5 cur-p"></a>
+						<img src="http://www.lingshi.com/templates/default/images/banklogo/kq.png" style="border:none;"  alt="万里积分商城" width="130" height="40" />
+					</span>
+									</td>
+			</tr>
+						<tr id="kuaiqian_item" class="hide">
+
+				<td  colspan="2">
+					<div class="inner_div fixed">
+												<span class="bank">
+							<input type="radio" name="payment" value="6" id="pay_6"  />
+							<label for="pay_6">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="23" id="pay_23"  />
+							<label for="pay_23">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_abc.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="22" id="pay_22"  />
+							<label for="pay_22">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_bcom.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="21" id="pay_21"  />
+							<label for="pay_21">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_bob.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="20" id="pay_20"  />
+							<label for="pay_20">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_boc.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="19" id="pay_19"  />
+							<label for="pay_19">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_ccb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="18" id="pay_18"  />
+							<label for="pay_18">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_ceb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="17" id="pay_17"  />
+							<label for="pay_17">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_cib.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="16" id="pay_16"  />
+							<label for="pay_16">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_citic.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="15" id="pay_15"  />
+							<label for="pay_15">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_cmb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="14" id="pay_14"  />
+							<label for="pay_14">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_cmbc.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="13" id="pay_13"  />
+							<label for="pay_13">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_gdb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="12" id="pay_12"  />
+							<label for="pay_12">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_gzcb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="11" id="pay_11"  />
+							<label for="pay_11">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_hxb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="10" id="pay_10"  />
+							<label for="pay_10">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_icbc.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="9" id="pay_9"  />
+							<label for="pay_9">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_post.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="8" id="pay_8"  />
+							<label for="pay_8">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_sdb.png" width="130" height="40" />
+							</label>
+						</span>
+												<span class="bank">
+							<input type="radio" name="payment" value="7" id="pay_7"  />
+							<label for="pay_7">
+								<img src="http://www.lingshi.com/templates/default/images/banklogo/kuaiqian_spdb.png" width="130" height="40" />
+							</label>
+						</span>
+											</div>
+				</td>
+			</tr>
+												<tr>
+				<td align="right" class="border">网上银行</td>
+				<td class="border">
+																																													<span class="bank">
+						<input type="radio" name="payment" value="24"  id="pay_24" />
+						<label for="pay_24">
+							<img src="http://www.lingshi.com/templates/default/images/banklogo/cmbchina.png" width="130" height="40"/>
+						</label>
+					</span>
+																																		</td>
+			</tr>
+								</table>
+					</div>
+
+
+
+	<div class="snack_list">
+		<div class="snack_list_title">商品名称<a href="http://pay.lingshi.com/?step=cart" style="font-size:12px; font-family:宋体; color:#458df0; margin-left:10px;margin-right:10px;float:right;font-weight:normal;">返回购物车&gt;&gt;</a></div>
+		<table border="0" cellspacing="0" cellpadding="0" class="list_table">
+			<tr>
+				<th colspan="2" class="align-l" style="text-indent:160px;">商品名称</th>
+								<th width="130">市场价</th>
+								<th width="130">中国零食网价(元)</th>
+				<th width="130">购买数量</th>
+				<th width="130">小计</th>
+			</tr>
+						<tr>
+				<td width="100">
+					<a href="http://www.lingshi.com/product/lingshi-11995.htm" target="_blank" class="snack_img">
+						<img src="http://image.lingshi.com/images/201704/thumb_img/11995_thumb_G_1492590907404.jpg" width="58" height="58"/>
+					</a>
+				</td>
+				<td width="500" class="align-l">
+										<a href="http://www.lingshi.com/product/lingshi-11995.htm" target="_blank">{{ info.gname }}</a>
+																																																																						<p class="snack_num">零食编号：{{ info.gnomber }}</p>
+				</td>
+								<td>
+					<span class="price">￥{{ info.goldprice }}元</span>
+				</td>
+								<td>
+					<span class="price1">￥{{ info.gnewprice }}元</span>
+				</td>
+				<td>{{ num }}</td>
+				<td>
+					<span class="price2">￥{%  widthratio num 1 info.sales %}元</span>
+				</td>
+			</tr>
+					</table>
+	</div>
+
+
+
+	<div class="other fixed">
+
+		<p onclick="togglebox(this)" class="cur" id="bonus_">
+			<a class="icon_open"></a>
+			使用代金券
+		</p>
+		<div class="other_wrap hide" id="bonus_box">
+			<p>
+				<b>代金券</b>
+
+				<input type="text" class="activation" name="bonus_sn" id="bonus_sn" placeholder="输入代金券激活码"/>
+				<a href="javascript:void(0)" onclick="validateBonus(document.getElementById('bonus_sn').value)" class="btn_activation" id="act_validate_bonus" style="color:#fff;">激活代金券</a>
+				<span id="bonus_msg" class="bonus_msg hide"></span>
+			</p>
+			<div class="frame" id="bonus_html">
+
+				<span class="title mt20" id="change_bonus" style="border-bottom:1px solid #f8dbb1;">
+					<input type="checkbox" name="use_bonus" id="use_bonus" value="1" onclick="changeBonus()"  /><label for="use_bonus" >&nbsp;可使用的代金券
+					<em id="bonus_num">（0）</em>
+				</span>
+
+				<div class="inner_frame" style="border:none;" id="bonus_list">
+														</div>
+
+			</div>
+		</div>
+
+
+
+				<p onclick="togglebox(this)" class="cur mt15" id="bill_">
+			<a class="icon_open" id="postscriptBtn"></a>
+			发票
+		</p>
+		<div class="other_wrap hide" id="bill_box">
+			<div class="frame">
+				<span class="title">
+					<input type="checkbox" class="check" onclick="selectInv(this)"  value="1" id="need_inv" name="need_inv"><label for="need_inv" >开发票</label></span>
+				<div class="inner_frame">
+					<p class="common" style="margin-top:5px;">
+						发票:
+												<input class="position" name="inv_type" type="radio" id="inv_type0" value="公司" checked disabled />
+						<label for="inv_type0" >公司</label>
+												<input type="text" class="invoice_input" name="inv_payee" id="inv_payee" disabled placeholder="请输入公司名称"/>
+					</p>
+					<p class="common" style="color:#ff6000;">
+					注：目前所开发票类型全部为增值税普通发票，内容为食品公司</p>
+				</div>
+			</div>
+		</div>
+
+		<p onclick="togglebox(this)" class="cur mt15" id="mssage_">
+			<a class="icon_open" id="postscriptBtn"></a>
+			留言
+		</p>
+		<div class="other_wrap hide" id="mssage_box">
+			<textarea id="postscript" rows="" cols="" name="postscript"></textarea>
+		</div>
+
+		<div class="clear"></div>
+		<div class="total_price mt15" id="ECS_ORDERTOTAL">
+			<div class="ordertotal" >
+    <ul>
+        <li><span class="snack"><em>1件</em>商品，重量：<em>403g</em></span>商品总价：<span class="price">￥{%  widthratio num 1 info.sales as value %}元</span></li>
+
+
+
+        <li>配送费用：<span class="price">+￥7.00元</span></li>
+                                    </ul>
+</div>
+总额：<span class="price2">￥{{ value|add:7 }}元</span>
+
+        </div>
+		<div class="clear"></div>
+	</div>
+
+
+	<div class="submit" id="order_submit">
+		<p class="pp">
+			<span>获得积分：<em>{%  widthratio num 1 100 %}</em></span>
+			<span>
+	应付款金额：
+		<span>
+		￥{{ value|add:7 }}元	</span>
+                <input type="hidden" name="money" value="{{ value|add:7 }}">
+
+	</span>
+	<input type="submit" value="提交订单" class="btn_submit" id="ordersubmit">
+    <input type="hidden" name="address" value="{{ cid }}">
+</p>
+<div class="info">
+    {% for address in addresses %}
+        {% if address.id == cid %}
+	<p>
+	{{ address.receive }}	<span style="margin-left:30px;">{{ address.telephone }}</span>
+	</p>
+	<p>{{ address.address }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$("#inv_payee").keydown(function(e){
+		if (e.keyCode == 13) {
+			return false;
+		}
+	});
+
+	$("#bonus_sn").keydown(function(e){
+		if (e.keyCode == 13) {
+			$("#act_validate_bonus").click();
+			return false;
+		}
+	});
+	var flow_no_payment   = "您必须选定一个支付方式。";
+	var flow_no_address   = "您必须选定一个收货地址。";
+	var flow_no_best_time = "您必须选定一个收货时间。";
+	var flow_no_inv_payee = "请输入发票抬头。";
+	var flow_no_inv_type  = "请选择发票类型。";
+</script>
+
+
+
+
+</div>
+<div class="wrap_bottom"></div>
+
+<div class="clear"></div>
+<div class="footer mt20" id="menu_sp_hide">
+	<div class="service"></div>
+	<div class="line"></div>
+	<div class="question">
+				<dl>
+			<dt>新手指南</dt>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/12" target="_blank">购物流程</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/13" target="_blank">找回密码</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/14" target="_blank">会员注册</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/36" target="_blank">积分制度</a></dd>
+					</dl>
+				<dl>
+			<dt>付款说明</dt>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/9" target="_blank">商品发票</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/10" target="_blank">办理退款</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/11" target="_blank">支付方式</a></dd>
+					</dl>
+				<dl>
+			<dt>配送说明 </dt>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/16" target="_blank">配送运费</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/17" target="_blank">配送时间</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/850" target="_blank">配送方式&运费</a></dd>
+					</dl>
+				<dl>
+			<dt>客户服务 </dt>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/21" target="_blank">订单速查</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/22" target="_blank">代金券</a></dd>
+						<dd><a rel="nofollow" href="http://art.lingshi.com/articles/articles/bangzhu/23" target="_blank">常见问题</a></dd>
+					</dl>
+				<dl class="sp">
+			<dt class="app"></dt>
+		</dl>
+		<dl class="sp noBd">
+			<dt class="tel"></dt>
+		</dl>
+	</div>
+
+
+	<div class="clear"></div>
+
+	<div class="copyright">
+
+	<div class="foot">
+		<ul>
+			<li><a target="_blank" href="http://art.lingshi.com/articles/articles/bangzhu" rel="nofollow">关于我们</a> | <a target="_blank" href="http://art.lingshi.com/articles/articles/bangzhu/4" rel="nofollow">联系我们</a> | <a href="http://www.lingshi.com/ditu.htm" target="_blank">网站地图</a> | <a href="http://www.lingshi.com/youqing.htm" target="_blank">友情链接</a> </li>
+		</ul>
+	</div>
+
+		<div class="copyright_img">
+			<a rel="nofollow" href="http://www.jsgsj.gov.cn:60103/businessCheck/verifKey.do?serial=3200009132048130471968a50a43001001-SAIC_SHOW_32000020170505094550350&signData=MEYCIQCojh/RCEQGyT2yQRVElhrVvacmMn/td+bGz9Hb20xiywIhALrfkW9FJua8H6efgMKjecM4lCdjRKM5jglQ0XPCEvdq" target="_blank"><img width="120" height="45" title="电子营业执照" alt="电子营业执照" src="http://www.lingshi.com/templates/default/images/license/dzyyzz.jpg"></a>
+			<a rel="nofollow" href="http://www.lingshi.com/templates/default/images/license/business.jpg" target="_blank"><img width="120" height="45" title="营业执照" alt="营业执照" src="http://www.lingshi.com/templates/default/images/license/businessico.png"></a>
+			<a rel="nofollow" href="http://www.lingshi.com/templates/default/images/license/food.jpg" target="_blank"><img width="120" height="45" title="食品经营-许可证" alt="食品经营-许可证" src="http://www.lingshi.com/templates/default/images/license/foodico.png"></a>
+			<a rel="nofollow" href="javascript:;" target="_blank"><img width="120" height="45" title="华南2C诚信同盟" alt="华南2C诚信同盟" src="http://www.lingshi.com/templates/default/images/scoba.jpg"></a>
+
+			<a rel="nofollow" href="javascript:;" target="_blank"><img width="120" height="45" title="诚信电商" alt="诚信电商" src="http://www.lingshi.com/templates/default/images/cxds.jpg"></a>
+
+            <a target="_blank" href="/weiquan/index.php" rel="nofollow"><img src="http://www.lingshi.com/templates/default/images/weiquan_2.jpg" width="120" height="45" alt="消费维权服务站" title="消费维权服务站" /></a>
+            <script id="jsgovicon" src="http://odr.jsdsgsxt.gov.cn:8081/mbm/app/main/electronic/js/govicon.js?siteId=176f977785eb44d79db86ddfc1d244f0&width=32&height=45&type=1" type="text/javascript" charset="utf-8"></script>
+		</div>
+		<div class="divd">
+			<div style="margin:0 0 5px 0;"><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32048102000376"><img src="http://www.lingshi.com/templates/default/images/bei.png" style=" position:relative; left:-2px; top:5px;"><span>苏公网安备 32048102000376号</span></a><span>&nbsp;苏ICP备17016124号&nbsp;许可证：粤B2-20110008</span>
+			</div>
+			<span>Copyright &copy; 中国零食网 2009 - 2015,</span>
+			<span>All Rights Reserved</span><br/>
+			<span>凡本网注明“lingshi.com”的所有作品，包括文字、图片、程序等，版权均属于中国零食网所有，未经同意，不得用于商业用途。</span>
+		</div>
+		<div class="info">本站通用网址：零食网  中国零食网</div>
+		<div class="info">全国统一服务电话：400-600-0404</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+var adobj = {
+	dom: '#menu_sp_hide',
+	aid:368,
+	act:'prepend',
+	fn: function (ads) {
+		if (ads != undefined) {
+			var title = ads.imt_title != '' ? ads.imt_title : ads.img_alt != '' ? ads.img_alt : ads.ad_name;
+			var html = '<a class="app_full" href="'+ads.ad_link+'" target="_blank" style="margin:5px 0 20px;background:'+ads.bannerbg+' url('+ads.ad_path+ads.ad_code+')  top center no-repeat;height:'+ads.ad_height+'px;" title="'+title+'">手机版客户端正式上线啦！</a>';
+			return html;
+			// $('#menu_sp_hide').prepend(html);
+		}
+
+	}
+}
+create_ads(adobj,'http://www.lingshi.com/');
+
+
+$(function(){
+  $("#formMsg2").submit(function(e){
+    e.preventDefault();
+    msg_title = this.elements['msg_title'].value;
+    if (!submitCom_view(msg_title)) {
+      return false;
+    }
+    msg_content = this.elements['msg_content'].value;
+    if (!submitCom_view2(msg_content)) {
+      return false;
+    }
+    var url = this.action;
+    $.ajax({
+      url: url,
+      type: 'GET',
+      dataType: 'jsonp',
+      jsonp: 'callback',
+      data:{msg_title:$("#msg_title").val(), msg_content:$("#msg_content").val(),act:$("#act").val()},
+      success: function (json) {
+        if (json.error == 1) {
+        	$(".box5").hide();
+        	 $('.view_succeed').show();
+          	 setTimeout("$('.view_wrap').hide()",1000);
+          	 $('#objection').click(function(){
+          	 	$(".box5").show();
+          	 	$('.view_succeed').hide();
+          	 	$('#msg_title,#msg_content').val('');
+          	 })
+        } else {
+          $('#content_notice').html(json.content);
+          return false;
+        }
+      }
+    });
+  });
+});
+
+</script>
+<div style="display:none;"><script src="http://s23.cnzz.com/stat.php?id=2649363&web_id=2649363" language="JavaScript"></script></div>
+<script type="text/javascript">
+(function() {var _53code = document.createElement("script");_53code.src = "https://tb.53kf.com/code/code/9007929/1";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(_53code, s);})();
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "//hm.baidu.com/hm.js?acc1c6cb1acc353880abc3cd8764c366";
+	var s = document.getElementsByTagName("script")[0];
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<div class="services"><a href="javascript:;" onclick="openchat();" rel="nofollow">联系客服</a></div>
+<script type="text/javascript">
+var process_request = "正在处理您的请求...";
+var username_empty = "- 用户名不能为空。";
+var username_shorter = "- 长度不能少于3个字符";
+var username_invalid = "- 用户名只能是由字母数字以及下划线组成。";
+var password_empty = "- 登录密码不能为空。";
+var password_shorter = "- 密码不能少于6个字符";
+var confirm_password_invalid = "- 两次输入密码不一致";
+var email_empty = "- Email为空";
+var email_invalid = "- Email不是合法的地址";
+var agreement = "- 您没有接受协议";
+var msn_invalid = "- msn地址不是一个有效的邮件地址";
+var qq_invalid = "- QQ号码不是一个有效的号码";
+var home_phone_invalid = "- 家庭电话不是一个有效号码";
+var office_phone_invalid = "- 办公电话不是一个有效号码";
+var mobile_phone_invalid = "- 手机号码不是一个有效号码";
+var msg_un_blank = "- 用户名不能为空";
+var msg_un_length = "* 用户名最长不得超过7个汉字";
+var msg_un_format = "* 用户名含有非法字符";
+var msg_un_registered = "* 用户名已经存在,请重新输入";
+var msg_can_rg = "* 可以注册";
+var msg_email_blank = "* 邮件地址不能为空";
+var msg_email_registered = "* 邮箱已存在,请重新输入";
+var msg_email_format = "* 邮件地址不合法";
+var msg_blank = "不能为空";
+var no_select_question = "- 您没有完成密码提示问题的操作";
+var passwd_balnk = "- 密码中不能包含空格";
+var invite_invalid = "- 邀请人不存在";
+var username_exist = "用户名 %s 已经存在";
+var compare_no_goods = "您没有选定任何需要比较的商品或者比较的商品数少于 2 个。";
+var btn_buy = "购买";
+var is_cancel = "取消";
+var select_spe = "请选择商品属性";
+</script>
+</body>
+</html>

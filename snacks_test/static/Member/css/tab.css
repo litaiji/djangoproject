@@ -1,0 +1,82 @@
+ol li {
+	margin:8px;
+}
+#con {
+	margin:15px auto;
+	font-size:12px;
+	width:1200px;
+}
+#con1 {
+	margin:10px 0;
+	font-size:12px;
+	width:1188px;
+}
+#con2 {
+	margin:10px 0;
+	font-size:12px;
+	width:100%;
+}
+#tags {
+	width:400px; 
+	height:26px;
+	margin:0 0 0 10px; 
+	padding:0;
+}
+#tags li { 
+	background:url(../images/tab/li_bg.png) 0 -26px no-repeat;
+	float:left;
+	display:inline; /* hack ie6 */
+	list-style-type:none;
+	margin-right:2px;
+	height:26px;
+	width:105px;
+}
+#tags li a { 
+	display:inline-block; height:26px; width:105px; 
+	line-height:26px;
+	font-size:12px;
+	text-align:center;
+}
+
+#tags li.emptyTag {
+	background:none transparent scroll repeat 0 0;
+	width:4px;
+}
+#tags li.selectTag { 
+	background:url(../images/tab/li_bg.png) no-repeat;
+	position:relative;
+	color:#fff;
+}
+#tags li.selectTag a {
+	color:#fff;
+}
+
+#tagContent {
+	border:#da0606 2px solid;
+	background-color:#fff;
+	padding:8px 8px 0 8px;
+}
+.tagContent {
+	display:none;
+	color:#474747;
+	height:auto;
+	*padding-bottom:10px;
+} /* hack ie6 & ie7 */
+#tagContent div.selectTag {
+	display:block;
+}
+
+.order_tab {
+ 	margin:0 0 8px 0;
+ 	*margin:0;
+} /* hack ie6 & ie7 */
+.order_tab td {
+	padding:5px 0;
+}
+.order_tab td span {
+	padding:0 8px;
+}
+
+.imgcenter {
+	text-align:center;
+}

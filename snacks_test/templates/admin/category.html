@@ -1,0 +1,240 @@
+{% extends 'admin/base.html' %}
+{% load customfilter %}
+{% block css %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav-first, .nav-second, .nav-three {
+            margin-left: 20px;
+        }
+
+        #warp i {
+            width: 13px;
+            height: 13px;
+            float: left;
+            margin-right: 8px;
+            margin-top: 6px;
+        }
+
+        #warp a {
+            display: block;
+            font-size: 18px;
+            height: 28px;
+            padding: 3px 0;
+            color: #666;
+            overflow: hidden;
+        }
+
+        .nav-three li {
+            padding-left: 10px;
+        }
+
+        #warp .fold i {
+            width: 13px;
+            height: 13px;
+            float: left;
+            margin-right: 8px;
+            margin-top: 6px;
+        }
+
+        #warp .fold {
+            display: none;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+    <div class="col-xs-12">
+    <div class="col-sm-6">
+        <div class="widget-box widget-color-blue2">
+            <div class="widget-header">
+                <h4 class="widget-title lighter smaller"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">商品分类</font></font></h4>
+            </div>
+
+            <div id="warp" class="tree">
+                <ul>
+                    {% for Dcategory in Dcategory_list %}
+
+                        <li>
+                            <ul class="nav-first">
+                                <li>
+                                    {% if Dcategory.parentid == 0 %}
+                                        <a class="item-1">
+                                            <i class="icon-folder ace-icon tree-plus"></i>
+                                            {{ Dcategory.category }}
+                                        </a>
+                                    {% endif %}
+                                    <ul class="nav-second fold ">
+                                        {% for Xcategory in Xcategory_list %}
+
+                                            {% if Xcategory.parentid == Dcategory.id %}
+
+                                                <li>
+                                                    <a>
+                                                        <i class="icon-folder ace-icon tree-minus"></i>
+                                                        {{ Xcategory.category }}
+                                                    </a>
+                                                </li>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+
+                                </li>
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h3 class="header blue lighter smaller">
+            <font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">
+                添加板块
+            </font></font>
+        </h3>
+
+        <form action="{% url 'admin:category' %}" method="post">
+            {% csrf_token %}
+            <label for="number-button" class="block">选择大板块</label>
+            <select name="select_add_category"  style="width: 200px; ">
+                <option>不选大板块</option>
+                {% for Dcategory in Dcategory_list %}
+                    <option value="{{ Dcategory.id }}">{{ Dcategory.category }}</option>
+                {% endfor %}
+            </select> <br>
+            <label for="number-button" class="block">添加板块</label>
+            <input type="text" name="input_add_category" style="width: 200px; height: 30px ;margin-bottom: 10px ">
+            <span>{{ msg }}</span><br>
+            <input type="submit" value="提交" class="btn btn-info" style="width: 200px; height: 39px ">
+        </form>
+
+
+    </div>
+    <div class="col-sm-6">
+        <h3 class="header blue lighter smaller">
+            <font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">
+                删除板块
+            </font></font>
+        </h3>
+
+        <form action="{% url 'admin:delcategory' %}" method="post">
+            {% csrf_token %}
+            <label for="number-button" class="block">选择大板块</label>
+            <select name="select_1_del_category" id="select_1_del_category" style="width: 200px; ">
+                <option value="">大板块</option>
+                {% for Dcategory in Dcategory_list %}
+                    <option value="{{ Dcategory.id }}">{{ Dcategory.category }}</option>
+                {% endfor %}
+            </select> <br>
+            <label for="number-button" class="block">选择小板块</label>
+            <select id="select_2_del_category" name="select_2_del_category" style="width: 200px; margin-bottom: 10px" disabled="disabled">
+                <option value="">小板块</option>
+
+
+            </select> <span>{{ msg }}</span><br>
+            <input type="submit" value="提交" class="btn btn-info" style="width: 200px; height: 39px ">
+        </form>
+
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block jss %}
+
+    <script>
+        $(function () {
+            $('.item-1').click(function () {
+                $(this).parent().find(".nav-second").slideToggle(500);
+                $(this).children(i).toggleClass('fold');
+            });
+            $('.item-2').click(function () {
+                $(this).parent().find(".nav-three").slideToggle(500);
+                $(this).children(i).toggleClass('fold');
+            });
+        });
+        $(function () {
+            $('#warp a').click(function () {  //单独a标签点击添加class
+                if ($(this).prev().hasClass('icon-folder ace-icon tree-plus')) {
+                    $(this).prev().removeClass('icon-folder ace-icon tree-plus');
+                } else {
+                    $(this).prev().addClass('icon-folder ace-icon tree-minus');
+                }
+                if ($(this).prev().hasClass('icon-folder ace-icon tree-minus')) {
+                    $(this).prev().removeClass('icon-folder ace-icon tree-minus');
+                } else {
+                    $(this).prev().addClass('icon-folder ace-icon tree-plus');
+                }
+            });
+        })
+    </script>
+
+    <script>
+        $(function () {
+            {##}
+            {#$.ajax({#}
+            {#    type: "post",#}
+            {#    url: "{% url 'admin:province' %}",#}
+            {#    dataType: "json",#}
+            {#    success: function (data) {#}
+            {#        console.info(data);#}
+            {#        for (var i = 0; i < data.length; i++) {#}
+            {#            console.info(data[i][1]);#}
+            {#            var pOption = "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";#}
+            {#            $("#da").append(pOption);#}
+            {#        }#}
+            {#    }#}
+            {# });#}
+            //市e
+            $("#select_1_del_category").change(function () {
+                 $("#select_2_del_category").attr("disabled", false);
+                $("#select_2_del_category").children(":not(:first)").remove();
+                var val=$("#select_1_del_category option:selected").val();
+                {#alert(val);#}
+
+                $.ajax({
+                    type: "post",
+                    url: "{% url 'admin:city' %}",
+                    dataType: "json",
+                    data: JSON.stringify({id: val}),
+                    success: function (data) {
+                        console.info(data);
+                        for (var i = 0; i < data.length; i++) {
+                            console.info(data[i][1]);
+                            var pOption = "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+                            $("#select_2_del_category").append(pOption);
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+{% endblock %}
+
+
+

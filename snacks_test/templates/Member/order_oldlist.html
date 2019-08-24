@@ -1,0 +1,48 @@
+{% extends 'Member/base.html' %}
+{% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock meta %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+{% endblock script %}
+{% block loginsideright %}
+    <div id="loginsideright" style="margin-bottom:20px;">
+        <h5><span>我的订单</span></h5>
+        <div class="blank"></div>
+        <table class="table table-bordered" style="width: 100%">
+            <tr style="color: red">
+                <th style="padding-left: 90px">零售订单</th>
+                <th style="padding-left: 90px">批发订单</th>
+                <th style="padding-left: 90px">团购订单</th>
+            </tr>
+            <tr>
+                <th style="padding-left: 90px">订单编号</th>
+                <th style="padding-left: 90px">下单时间</th>
+                <th style="padding-left: 90px">订单总金额</th>
+{#                <th style="padding-left: 70px">订单状态</th>#}
+                <th style="padding-left: 105px">操作</th>
+            </tr>
+{#        {% if order == 1 %}#}
+{#        {% else %}#}
+        {% for order in order %}
+            {% if order.usertype == 2 %}
+                {% for order_commodity in order_commodity %}
+                    {% if order_commodity.oid == order.id %}
+                    <tr>
+                        <td style="height:20px;">{{ order_commodity.ordernumber }}</td>
+
+                        <td style="height:20px;">{{ order.createtime }}</td>
+                        <td style="height:20px;">￥{{ order.money }}元</td>
+                            <td style="height:20px;">取消订单</td>
+
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+{#        {% endif %}#}
+        </table>
+    </div>
+{% endblock loginsideright %}

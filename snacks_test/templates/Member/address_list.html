@@ -1,0 +1,231 @@
+{% extends 'Member/base.html' %}
+{% load static %}
+{% block loginsideright %}
+    <div id="loginsideright" style="margin-bottom:20px;">
+
+
+        <div class="address_title">收货人信息</div>
+        <div class="mt15" style=" text-align:right;">您已添加1个收货地址, 最多可添加10个<a href="{% url 'member:address_write' %}"
+                                                                            class="new_address_btn ml10"
+                                                                            >新增收货地址</a></div>
+
+        <script type="text/javascript" src="http://www.lingshi.com/js/utils.js"></script>
+        <script type="text/javascript" src="http://www.lingshi.com/js/region.js"></script>
+        <script type="text/javascript" src="http://www.lingshi.com/js/shopping.js"></script>
+        <script type="text/javascript">
+            region.isAdmin = false;
+            var consignee_not_null = "收货人姓名不能为空！";
+            var country_not_null = "国家";
+            var province_not_null = "省份";
+            var city_not_null = "城市";
+            var district_not_null = "区域";
+            var invalid_email = "您输入的邮件地址不是一个合法的邮件地址。";
+            var address_not_null = "收货人的详细地址不能为空！";
+            var tele_not_null = "电话不能为空！";
+            var shipping_not_null = "请您选择配送方式！";
+            var payment_not_null = "请您选择支付方式！";
+            var goodsattr_style = "1";
+            var tele_invaild = "电话号码不是有效的号码！";
+            var zip_not_num = "邮政编码只能填写数字";
+            var mobile_invaild = "手机号码不是合法号码！";
+
+            function add_new_address() {
+                var consignee_length = 1;
+                if (consignee_length >= 10) {
+                    alert('您的收货地址已达上限！');
+                } else {
+                    showbox('http://member.lingshi.com/?act=address_list', 'http://pay.lingshi.com/?step=consignee&address_id=0', 855, 380);
+                }
+            }
+        </script>
+        {% for address in my_address %}
+        <table border="0" cellpadding="0" cellspacing="0" class="table_address mt15" style="width: 80%">
+            <tbody>
+
+            <tr>
+                <td colspan="2" class="cole54347 font14">收货地址</td>
+                {% if address.isdefault == 1 %}
+                <td width="24%" align="right"><a class="default_address mr10">默认常用地址</a><a href="javascript:void(0)"
+                                                                                           onclick="showbox('http://member.lingshi.com/?act=address_list','http://pay.lingshi.com/?step=consignee&amp;address_id=272266',855,380)"
+                                                                                           class="col09c">修改</a></td>
+            {% endif %}
+            </tr>
+            <tr>
+                <td width="11%" align="right" class="col999">收货人:</td>
+                <td width="65%">{{ address.receive }}</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="right" class="col999">收货地址:</td>
+                <td>{{ address.address }}</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="right" class="col999">手机号码:</td>
+                <td>{{ address.telephone }}</td>
+                <td>&nbsp;</td>
+            </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+
+
+    </div>
+{#    <body>#}
+{#    <form action="http://pay.lingshi.com/" method="post" name="theForm" id="theForm"#}
+{#          onsubmit="return checkConsignee(this);">#}
+{#        <div class="table_info">#}
+{##}
+{#            <div class="add_addr_info">#}
+{#                <span>使用新的收货地址</span>#}
+{#            </div>#}
+{#            <table width="100" class="table_address" border="0" cellspacing="0" cellpadding="0">#}
+{#                <tbody>#}
+{#                <tr>#}
+{#                    <td width="116"><em class="sign">*</em>收货人：</td>#}
+{#                    <td colspan="3">#}
+{#                        <input name="consignee" type="text" class="input_01" value="">#}
+{#                        <span class="notice" id="consignee_notice"></span>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td width='50px'><em class="sign">*</em>配送区域:</td>#}
+{#                    <td colspan="3">#}
+{#                        <select name="country" class="select" id="selCountries"#}
+{#                                onchange="region.changed(this, 1, 'selProvinces')" >#}
+{#                            <option value="0" >请选择国家</option>#}
+{#                            <option value="1" selected="">中国</option>#}
+{#                            <option value="3479">美国</option>#}
+{#                            <option value="3485">日本</option>#}
+{#                            <option value="3494">加拿大</option>#}
+{#                        </select>#}
+{#                        <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')"#}
+{#                                class="select">#}
+{#                            <option value="0">请选择省</option>#}
+{#                            <option value="2">北京</option>#}
+{#                            <option value="3">安徽</option>#}
+{#                            <option value="4">福建</option>#}
+{#                            <option value="5">甘肃</option>#}
+{#                            <option value="6">广东</option>#}
+{#                            <option value="7">广西</option>#}
+{#                            <option value="8">贵州</option>#}
+{#                            <option value="9">海南</option>#}
+{#                            <option value="10">河北</option>#}
+{#                            <option value="11">河南</option>#}
+{#                            <option value="12">黑龙江</option>#}
+{#                            <option value="13">湖北</option>#}
+{#                            <option value="14">湖南</option>#}
+{#                            <option value="15">吉林</option>#}
+{#                            <option value="16">江苏</option>#}
+{#                            <option value="17">江西</option>#}
+{#                            <option value="18">辽宁</option>#}
+{#                            <option value="19">内蒙古</option>#}
+{#                            <option value="20">宁夏</option>#}
+{#                            <option value="21">青海</option>#}
+{#                            <option value="22">山东</option>#}
+{#                            <option value="23">山西</option>#}
+{#                            <option value="24">陕西</option>#}
+{#                            <option value="25">上海</option>#}
+{#                            <option value="26">四川</option>#}
+{#                            <option value="27">天津</option>#}
+{#                            <option value="28">西藏</option>#}
+{#                            <option value="29">新疆</option>#}
+{#                            <option value="30">云南</option>#}
+{#                            <option value="31">浙江</option>#}
+{#                            <option value="32">重庆</option>#}
+{#                            <option value="33">香港</option>#}
+{#                            <option value="34">澳门</option>#}
+{#                            <option value="35">台湾</option>#}
+{#                        </select>#}
+{#                        <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')"#}
+{#                                class="select">#}
+{#                            <option value="0">请选择市</option>#}
+{#                        </select>#}
+{##}
+{#                        <select name="district" id="selDistricts" style="display:none;" class="select">#}
+{#                            <option value="0">请选择区</option>#}
+{#                        </select>#}
+{#                        <span class="notice" id="region_notice"></span>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><em class="sign">*</em>详细地址：</td>#}
+{#                    <td colspan="3">#}
+{#                        <input name="address" type="text" class="input_02" value="">#}
+{#                        <span class="notice" id="address_notice"></span>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><em class="sign">*</em>手机号码：</td>#}
+{#                    <td width="190">#}
+{#                        <input name="mobile" type="text" class="input_01" value="">#}
+{#                    </td>#}
+{#                    <td width="97"><em class="color999">或</em>&nbsp;&nbsp;&nbsp;&nbsp;固定电话：</td>#}
+{#                    <td width="497">#}
+{#                        <input name="tel" type="text" class="input_01" value="">#}
+{#                        <span class="notice" id="mobile_notice"></span>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><em class="sign">&nbsp;&nbsp;</em>邮箱：</td>#}
+{#                    <td>#}
+{#                        <input name="email" type="text" class="input_01" value="">#}
+{#                    </td>#}
+{#                    <td colspan="2">#}
+{#                        <span class="" style="color:#999;">用来接收订单提醒邮件，便于您及时了解订单</span>#}
+{#                        <span class="notice" id="email_notice"></span>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td></td>#}
+{#                    <td colspan="3" style="padding-bottom:15px;">#}
+{#                        <input type="hidden" name="step" value="consignee">#}
+{#                        <input type="hidden" name="act" value="confirm">#}
+{#                        <input type="hidden" name="logintype" value="ajax">#}
+{#                        <input type="hidden" name="back_act" value="http://member.lingshi.com/?act=address_list">#}
+{#                        <input name="address_id" type="hidden" value="0">#}
+{##}
+{#                        <input type="submit" class="btn_save" value="保存收货人信息">#}
+{#                        <input type="checkbox" class="check" value="1" name="default" id="checkbox">#}
+{#                        <label for="checkbox">保存为默认收货地址</label></td>#}
+{#                </tr>#}
+{#                </tbody>#}
+{#            </table>#}
+{#        </div>#}
+{#    </form>#}
+{#    <script type="text/javascript">#}
+{#        var process_request = "正在处理您的请求...";#}
+{#        var username_empty = "- 用户名不能为空。";#}
+{#        var username_shorter = "- 长度不能少于3个字符";#}
+{#        var username_invalid = "- 用户名只能是由字母数字以及下划线组成。";#}
+{#        var password_empty = "- 登录密码不能为空。";#}
+{#        var password_shorter = "- 密码不能少于6个字符";#}
+{#        var confirm_password_invalid = "- 两次输入密码不一致";#}
+{#        var email_empty = "- Email为空";#}
+{#        var email_invalid = "- Email不是合法的地址";#}
+{#        var agreement = "- 您没有接受协议";#}
+{#        var msn_invalid = "- msn地址不是一个有效的邮件地址";#}
+{#        var qq_invalid = "- QQ号码不是一个有效的号码";#}
+{#        var home_phone_invalid = "- 家庭电话不是一个有效号码";#}
+{#        var office_phone_invalid = "- 办公电话不是一个有效号码";#}
+{#        var mobile_phone_invalid = "- 手机号码不是一个有效号码";#}
+{#        var msg_un_blank = "- 用户名不能为空";#}
+{#        var msg_un_length = "* 用户名最长不得超过7个汉字";#}
+{#        var msg_un_format = "* 用户名含有非法字符";#}
+{#        var msg_un_registered = "* 用户名已经存在,请重新输入";#}
+{#        var msg_can_rg = "* 可以注册";#}
+{#        var msg_email_blank = "* 邮件地址不能为空";#}
+{#        var msg_email_registered = "* 邮箱已存在,请重新输入";#}
+{#        var msg_email_format = "* 邮件地址不合法";#}
+{#        var msg_blank = "不能为空";#}
+{#        var no_select_question = "- 您没有完成密码提示问题的操作";#}
+{#        var passwd_balnk = "- 密码中不能包含空格";#}
+{#        var invite_invalid = "- 邀请人不存在";#}
+{#        var username_exist = "用户名 %s 已经存在";#}
+{#        var compare_no_goods = "您没有选定任何需要比较的商品或者比较的商品数少于 2 个。";#}
+{#        var btn_buy = "购买";#}
+{#        var is_cancel = "取消";#}
+{#        var select_spe = "请选择商品属性";#}
+{#    </script>#}
+{#    </body>#}
+{% endblock loginsideright %}
